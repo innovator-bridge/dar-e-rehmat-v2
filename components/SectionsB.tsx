@@ -6,11 +6,27 @@ import { CountNum } from './SectionsA';
 import { addTask, reduced } from '@/lib/motion';
 import { cues } from '@/data/teacher';
 import {
-  proof, bandImage, team, school, gallery, support, location, contact, footer, nav, brand, ui,
+  L, proof, bandImage, centre, langar, transport, support, location, contact, footer, nav, brand, ui,
   MAPS_URL, CONTACT, contactImage,
 } from '@/data/site';
 
-/* ---------- Proof: parallax band, KPIs, timeline ---------- */
+/* ---------- Generic page banner for the inner pages ---------- */
+export function PageHero({ img, title, sub }: { img: string; title: L; sub: L }) {
+  const { t } = useLang();
+  return (
+    <section className="phero" data-dark>
+      <div className="phero-bg"><img data-par="0.1" src={a(img)} alt="" /></div>
+      <div className="grain" />
+      <div className="wrap phero-in">
+        <a className="back" href={a('/')}>← {t(ui.backHome)}</a>
+        <h1 className="h-xl" data-rv="up">{t(title)}</h1>
+        <p className="lede" data-rv="up" data-d="120" style={{ marginTop: 22 }}>{t(sub)}</p>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Proof: parallax band, KPIs, timeline (home) ---------- */
 export function Proof() {
   const { t } = useLang();
   const tl = useRef<HTMLDivElement>(null);
@@ -67,8 +83,8 @@ export function Proof() {
               ))}
             </div>
             <div className="photos-s">
-              <img src={a("/img/langar/2789.jpg")} alt="" loading="lazy" data-rv="right" />
-              <img src={a("/img/langar/2784.jpg")} alt="" loading="lazy" data-rv="right" data-d="150" />
+              <img src={a('/img/w/l2794.jpg')} alt="" loading="lazy" data-rv="right" />
+              <img src={a('/img/w/l2803.jpg')} alt="" loading="lazy" data-rv="right" data-d="150" />
             </div>
           </div>
         </div>
@@ -77,17 +93,54 @@ export function Proof() {
   );
 }
 
-/* ---------- Team ---------- */
-export function Team() {
+/* ---------- Transport and medical (home) ---------- */
+export function Transport() {
+  const { t } = useLang();
+  const slots: ({ src: string; alt: L } | null)[] = transport.images.length ? transport.images : [null, null, null];
+  return (
+    <section className="sec mist" id="transport">
+      <div className="wrap">
+        <div className="eyebrow" data-rv="up">{t(transport.eyebrow)}</div>
+        <h2 className="h-lg" data-rv="up" data-d="80" style={{ maxWidth: '18ch' }}>{t(transport.title)}</h2>
+        <div className="split" style={{ marginTop: 48 }}>
+          <div data-rv="up">
+            <p className="lede">{t(transport.body)}</p>
+            <ul className="facts dkfacts">{transport.facts.map((f, i) => <li key={i}>{t(f)}</li>)}</ul>
+            <div className="person driver">
+              <div className="pimg">
+                {transport.driver.img ? <img src={a(transport.driver.img)} alt={t(transport.driver.name)} loading="lazy" /> : <div className="ph-empty light"><span>{t(ui.comingSoon)}</span></div>}
+              </div>
+              <div className="pb">
+                <h3>{t(transport.driver.name)}</h3>
+                <span className="role">{t(transport.driverRole)}</span>
+                <p>{t(transport.driverNote)}</p>
+              </div>
+            </div>
+          </div>
+          <div className="tgrid">
+            {slots.map((im, i) => (
+              <figure key={i} className={i === 0 ? 'wide' : ''} data-rv="up" data-d={i * 100}>
+                {im ? <img src={a(im.src)} alt={t(im.alt)} loading="lazy" /> : <div className="ph-empty light"><span>{t(ui.comingSoon)}</span></div>}
+              </figure>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- People grid, reused by both pages ---------- */
+export function PeopleGrid({ data, id }: { data: { eyebrow: L; title: L; lede: L; people: { img: string; name: L; role: L; note: L }[] }; id?: string }) {
   const { t } = useLang();
   return (
-    <section className="sec mist" id="team">
+    <section className="sec mist" id={id}>
       <div className="wrap">
-        <div className="eyebrow" data-rv="up">{t(team.eyebrow)}</div>
-        <h2 className="h-lg" data-rv="up" data-d="80" style={{ maxWidth: '18ch' }}>{t(team.title)}</h2>
-        <p className="lede" data-rv="up" data-d="160" style={{ marginTop: 20 }}>{t(team.lede)}</p>
-        <div className="team-grid">
-          {team.people.map((p, i) => (
+        <div className="eyebrow" data-rv="up">{t(data.eyebrow)}</div>
+        <h2 className="h-lg" data-rv="up" data-d="80" style={{ maxWidth: '18ch' }}>{t(data.title)}</h2>
+        <p className="lede" data-rv="up" data-d="160" style={{ marginTop: 20 }}>{t(data.lede)}</p>
+        <div className={'team-grid' + (data.people.length <= 3 ? ' few' : '')}>
+          {data.people.map((p, i) => (
             <article className="person" key={i} data-rv="up" data-d={(i % 4) * 90}>
               <div className="pimg"><img src={a(p.img)} alt={`${t(p.name)}, ${t(p.role)}`} loading="lazy" /></div>
               <div className="pb">
@@ -103,8 +156,51 @@ export function Team() {
   );
 }
 
-/* ---------- School: teacher video with live English captions + transcript, plus clips ---------- */
-const CLIPS = ['2822', '2823', '2828', '2829', '2830', '2836', '2847', '2853', '2854', '2893', '2901', '2902', '2920', '2926', '2927'];
+/* ---------- Photo wall, reused ---------- */
+export function PhotoWall({ eyebrow, title, items, id, tone }: { eyebrow: L; title: L; items: { src: string; alt: L }[]; id?: string; tone?: 'mist' }) {
+  const { t } = useLang();
+  return (
+    <section className={'sec' + (tone ? ' ' + tone : '')} id={id}>
+      <div className="wrap">
+        <div className="eyebrow" data-rv="up">{t(eyebrow)}</div>
+        <h2 className="h-lg" data-rv="up" data-d="80" style={{ maxWidth: '18ch' }}>{t(title)}</h2>
+        <div className="gal">
+          {items.map((g, i) => (
+            <figure key={i} data-rv="up" data-d={(i % 4) * 80}><img src={a(g.src)} alt={t(g.alt)} loading="lazy" /></figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Langar intro with live numbers ---------- */
+export function LangarIntro() {
+  const { t } = useLang();
+  const nums: { target: number; label: L }[] = [
+    { target: 300, label: { en: 'People fed on a typical day', ur: 'روزانہ کھانا کھانے والے', ar: 'يُطعَمون يوميًا' } },
+    { target: 70, label: { en: 'Women served every day', ur: 'روزانہ خواتین کو کھانا', ar: 'نساء يُخدَمن يوميًا' } },
+    { target: 40, label: { en: 'Women who dine with their children', ur: 'بچوں کے ساتھ کھانے والی خواتین', ar: 'نساء يأكلن مع أطفالهن' } },
+  ];
+  return (
+    <section className="sec">
+      <div className="wrap">
+        <p className="lede" data-rv="up" style={{ maxWidth: '62ch' }}>{t(langar.intro)}</p>
+        <div className="kpis three" style={{ marginTop: 48 }}>
+          {nums.map((k, i) => (
+            <div className="kpi" key={i} data-rv="up" data-d={i * 120}>
+              <div className="num"><CountNum target={k.target} /></div>
+              <div className="ul" /><p>{t(k.label)}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Teacher video (captions appear once a transcript is added) + classroom clips ---------- */
+const CLIPS = ['2823', '2828', '2836', '2847', '2853', '2893', '2902', '2920', '2926'];
 
 function AutoClip({ id }: { id: string }) {
   const v = useRef<HTMLVideoElement>(null);
@@ -118,7 +214,7 @@ function AutoClip({ id }: { id: string }) {
   return <video ref={v} src={a(`/video/school-${id}.mp4`)} poster={a(`/video/poster-${id}.jpg`)} muted loop playsInline preload="none" />;
 }
 
-export function School() {
+export function Teacher() {
   const { t } = useLang();
   const vid = useRef<HTMLVideoElement>(null);
   const trRef = useRef<HTMLDivElement>(null);
@@ -127,11 +223,7 @@ export function School() {
 
   useEffect(() => {
     const v = vid.current!;
-    const on = () => {
-      const ct = v.currentTime;
-      const k = cues.findIndex((c) => ct >= c.s && ct < c.e);
-      setNow(k);
-    };
+    const on = () => setNow(cues.findIndex((c) => v.currentTime >= c.s && v.currentTime < c.e));
     v.addEventListener('timeupdate', on);
     return () => v.removeEventListener('timeupdate', on);
   }, []);
@@ -140,18 +232,16 @@ export function School() {
     const box = trRef.current, el = box?.children[now] as HTMLElement | undefined;
     if (box && el) box.scrollTo({ top: el.offsetTop - box.clientHeight / 3, behavior: reduced() ? 'auto' : 'smooth' });
   }, [now]);
-
   const seek = (s: number) => { const v = vid.current!; v.currentTime = s + 0.01; v.play().catch(() => {}); };
-  return (
-    <section className="sec dark" id="school" data-dark>
-      <div className="wrap">
-        <div className="eyebrow" data-rv="up">{t(school.eyebrow)}</div>
-        <h2 className="h-lg" data-rv="up" data-d="80" style={{ maxWidth: '20ch' }}>{t(school.title)}</h2>
-        <p className="lede" data-rv="up" data-d="160" style={{ marginTop: 20 }}>{t(school.lede)}</p>
 
+  return (
+    <section className="sec dark" id="teacher" data-dark>
+      <div className="wrap">
+        <div className="eyebrow" data-rv="up">{t(centre.videoTitle)}</div>
+        <h2 className="h-lg" data-rv="up" data-d="80" style={{ maxWidth: '20ch' }}>{t(centre.teacherName)}</h2>
         <div className="teach">
           <div className="vwrap" data-rv="scale">
-            <video ref={vid} src={a("/video/teacher.mp4")} poster={a("/img/teacher.jpg")} controls playsInline preload="metadata" />
+            <video ref={vid} src={a('/video/teacher.mp4')} poster={a('/img/teacher.jpg')} controls playsInline preload="metadata" />
             {cues.length > 0 && (
               <div className="vbar">
                 <button className="chip" aria-pressed={capOn} onClick={() => setCapOn(!capOn)}>{t(ui.captions)} · EN</button>
@@ -160,8 +250,7 @@ export function School() {
             {capOn && now >= 0 && <div className="cap" aria-live="polite"><span>{cues[now].en}</span></div>}
           </div>
           <div data-rv="up" data-d="100">
-            <div className="tname">{t(school.teacherName)}</div>
-            <div className="trole">{t(school.teacherRole)}</div>
+            <div className="trole">{t(centre.teacherRole)}</div>
             {cues.length === 0 && <p style={{ marginTop: 18, opacity: 0.8, maxWidth: '44ch' }}>{t(ui.soon)}</p>}
             {cues.length > 0 && <p style={{ marginTop: 14, opacity: 0.7, fontSize: '0.9rem' }}>{t(ui.inHerWords)} · {t(ui.original)} / {t(ui.english)}</p>}
             <div className="tr" ref={trRef}>
@@ -175,28 +264,9 @@ export function School() {
           </div>
         </div>
 
-        <h3 className="h-md" style={{ marginTop: 90 }} data-rv="up">{t(school.clipsTitle)}</h3>
+        <h3 className="h-md" style={{ marginTop: 90 }} data-rv="up">{t(centre.clipsTitle)}</h3>
         <div className="clips">
           {CLIPS.map((id) => <div className="clip" key={id} data-rv="up"><AutoClip id={id} /></div>)}
-        </div>
-        <p style={{ marginTop: 26, opacity: 0.65, fontSize: '0.9rem' }}>{t(school.garmentsNote)}</p>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- Gallery ---------- */
-export function Gallery() {
-  const { t } = useLang();
-  return (
-    <section className="sec" id="gallery">
-      <div className="wrap">
-        <div className="eyebrow" data-rv="up">{t(gallery.eyebrow)}</div>
-        <h2 className="h-lg" data-rv="up" data-d="80" style={{ maxWidth: '18ch' }}>{t(gallery.title)}</h2>
-        <div className="gal">
-          {gallery.items.map((g, i) => (
-            <figure key={i} data-rv="up" data-d={(i % 4) * 80}><img src={a(g.src)} alt={t(g.alt)} loading="lazy" /></figure>
-          ))}
         </div>
       </div>
     </section>
@@ -213,7 +283,7 @@ export function Support() {
           <div className="eyebrow">{t(support.eyebrow)}</div>
           <h2 className="h-lg" style={{ maxWidth: '14ch' }}>{t(support.title)}</h2>
           <p className="lede" style={{ marginTop: 20 }}>{t(support.body)}</p>
-          <a className="btn pri" href="#contact">{t(support.cta)}</a>
+          <a className="btn pri" href={a('/#contact')}>{t(support.cta)}</a>
         </div>
         <div>
           {support.steps.map((s, i) => (
@@ -223,6 +293,20 @@ export function Support() {
             </div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Closing call to action for the inner pages ---------- */
+export function PageCta() {
+  const { t } = useLang();
+  return (
+    <section className="sec dark" data-dark>
+      <div className="wrap" style={{ textAlign: 'center' }}>
+        <h2 className="h-lg" data-rv="up" style={{ maxWidth: '18ch', marginInline: 'auto' }}>{t(support.title)}</h2>
+        <p className="lede" data-rv="up" data-d="100" style={{ margin: '18px auto 30px' }}>{t(support.body)}</p>
+        <a className="btn pri" href={a('/#contact')} data-rv="up" data-d="180">{t(support.cta)}</a>
       </div>
     </section>
   );
@@ -312,7 +396,7 @@ export function Footer() {
         <div className="fgrid">
           <div>
             <div className="logo" style={{ color: '#fff', marginBottom: 14 }}>
-              <span className="logo-mark"><img src={a("/logo-light.svg")} alt="" width={38} height={38} style={{ opacity: 1 }} /></span>
+              <span className="logo-mark"><img src={a('/logo-light.svg')} alt="" width={38} height={38} style={{ opacity: 1 }} /></span>
               <span>{t(brand.name)}</span>
             </div>
             <p style={{ maxWidth: '38ch' }}>{t(footer.line)}</p>
@@ -320,13 +404,13 @@ export function Footer() {
           </div>
           <div>
             <h4>{t(ui.menu)}</h4>
-            {nav.map((n) => <a key={n.id} href={'#' + n.id}>{t(n.label)}</a>)}
+            {nav.map((n) => <a key={n.href} href={a(n.href)}>{t(n.label)}</a>)}
           </div>
           <div>
             <h4>{t(ui.cta)}</h4>
             <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
             <a href={`tel:${CONTACT.phone.replace(/\s/g, '')}`} style={{ direction: 'ltr' }}>{CONTACT.phone}</a>
-            <a href="#contact" className="btn pri sm" style={{ display: 'inline-flex', marginTop: 14 }}>{t(ui.cta)}</a>
+            <a href={a('/#contact')} className="btn pri sm" style={{ display: 'inline-flex', marginTop: 14 }}>{t(ui.cta)}</a>
           </div>
         </div>
         <div className="fbar"><span>© {new Date().getFullYear()} {t(footer.rights)}</span><span>{t(footer.disclaimer)}</span></div>

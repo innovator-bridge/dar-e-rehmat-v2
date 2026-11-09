@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLang } from './Lang';
 import { a } from '@/lib/asset';
+import { usePathname } from 'next/navigation';
 import { LANGS, nav, brand, ui } from '@/data/site';
 import { addTask, reduced } from '@/lib/motion';
 
@@ -59,9 +60,9 @@ export function Cursor() {
 
 export function Nav() {
   const { lang, setLang, t } = useLang();
+  const path = usePathname() || '/';
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState('');
   const drawer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -72,36 +73,32 @@ export function Nav() {
   }, []);
 
   useEffect(() => {
-    const io = new IntersectionObserver(
-      (es) => es.forEach((e) => e.isIntersecting && setActive(e.target.id)),
-      { rootMargin: '-45% 0px -50% 0px' }
-    );
-    nav.forEach((n) => { const el = document.getElementById(n.id); if (el) io.observe(el); });
-    return () => io.disconnect();
-  }, []);
-
-  useEffect(() => {
     const d = drawer.current;
     if (!d) return;
     if (open) d.removeAttribute('inert'); else d.setAttribute('inert', '');
     document.body.style.overflow = open ? 'hidden' : '';
   }, [open]);
 
+  const isActive = (href: string) => {
+    const clean = href.split('#')[0];
+    if (href.includes('#')) return false;
+    return clean === '/' ? path === '/' : path.startsWith(clean.replace(/\/$/, ''));
+  };
   const go = () => setOpen(false);
   return (
     <>
       <header className={'nav' + (scrolled ? ' scrolled' : '')} data-dark>
         <div className="wrap nav-in">
-          <a href="#top" className="logo" aria-label={t(brand.name)}>
+          <a href={a('/')} className="logo" aria-label={t(brand.name)}>
             <span className="logo-mark">
-              <img className="lt" src={a("/logo-light.svg")} alt="" width={38} height={38} />
-              <img className="dk" src={a("/logo-dark.svg")} alt="" width={38} height={38} />
+              <img className="lt" src={a('/logo-light.svg')} alt="" width={38} height={38} />
+              <img className="dk" src={a('/logo-dark.svg')} alt="" width={38} height={38} />
             </span>
             <span>{t(brand.name)}</span>
           </a>
           <nav className="nav-links" aria-label="Primary">
             {nav.map((n) => (
-              <a key={n.id} href={'#' + n.id} className={active === n.id ? 'active' : ''}>{t(n.label)}</a>
+              <a key={n.href} href={a(n.href)} className={isActive(n.href) ? 'active' : ''}>{t(n.label)}</a>
             ))}
           </nav>
           <div className="lang" role="group" aria-label={t(ui.language)}>
@@ -109,7 +106,7 @@ export function Nav() {
               <button key={l.code} aria-pressed={lang === l.code} onClick={() => setLang(l.code)}>{l.label}</button>
             ))}
           </div>
-          <a href="#contact" className="btn pri sm">{t(ui.cta)}</a>
+          <a href={a('/#support')} className="btn pri sm">{t(ui.cta)}</a>
           <button className={'burger' + (open ? ' open' : '')} aria-label={open ? t(ui.close) : t(ui.menu)} aria-expanded={open} onClick={() => setOpen(!open)}>
             <i /><i /><i />
           </button>
@@ -117,9 +114,9 @@ export function Nav() {
       </header>
       <div className={'drawer' + (open ? ' open' : '')} ref={drawer} inert>
         {nav.map((n, i) => (
-          <a key={n.id} href={'#' + n.id} style={{ ['--i' as string]: i }} onClick={go}>{t(n.label)}</a>
+          <a key={n.href} href={a(n.href)} style={{ ['--i' as string]: i }} onClick={go}>{t(n.label)}</a>
         ))}
-        <a href="#contact" style={{ ['--i' as string]: nav.length, color: 'var(--gold)' }} onClick={go}>{t(ui.cta)}</a>
+        <a href={a('/#support')} style={{ ['--i' as string]: nav.length, color: 'var(--gold)' }} onClick={go}>{t(ui.cta)}</a>
       </div>
     </>
   );

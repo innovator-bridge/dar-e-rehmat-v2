@@ -203,12 +203,13 @@ export function WorkRail() {
         <div className="pin-track" ref={track}>
           {work.pillars.map((p) => (
             <article className="rcard" key={p.n}>
-              <div className="ph"><img src={a(p.img)} alt="" loading="lazy" /></div>
+              <div className="ph">{p.img ? <img src={a(p.img)} alt="" loading="lazy" /> : <div className="ph-empty"><Icon k={p.icon} /><span>{t(ui.comingSoon)}</span></div>}</div>
               <div className="rbody">
                 <div className="rtop"><span className="rnum">{p.n}</span><span className="ricon"><Icon k={p.icon} /></span></div>
                 <h3>{t(p.title)}</h3>
                 <p>{t(p.body)}</p>
                 <ul className="facts">{p.facts.map((f, k) => <li key={k}>{t(f)}</li>)}</ul>
+                <a className="more" href={a(p.href)}>{t(ui.learnMore)} <span aria-hidden>→</span></a>
               </div>
             </article>
           ))}
@@ -233,7 +234,7 @@ export function Model() {
             <article key={s.n} className={'scard' + (k === model.steps.length - 1 ? ' final' : '')} style={{ ['--k' as string]: k }}>
               <div className="big" aria-hidden>{s.n}</div>
               <div><h3>{t(s.title)}</h3><p>{t(s.body)}</p></div>
-              <span className="stag">{t(s.tag)}</span>
+              <div className="sph"><img src={a(s.img)} alt={t(s.title)} loading="lazy" /><span className="stag">{t(s.tag)}</span></div>
             </article>
           ))}
         </div>

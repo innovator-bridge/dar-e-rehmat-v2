@@ -26,16 +26,19 @@ export const brand: { name: L; short: L; tagline: L } = {
   },
 };
 
-export const nav: { id: string; label: L }[] = [
-  { id: 'about', label: { en: 'About', ur: 'ہمارے بارے میں', ar: 'من نحن' } },
-  { id: 'work', label: { en: 'Our Work', ur: 'ہمارا کام', ar: 'عملنا' } },
-  { id: 'school', label: { en: 'Sewing School', ur: 'سلائی سکول', ar: 'مدرسة الخياطة' } },
-  { id: 'team', label: { en: 'Team', ur: 'ہماری ٹیم', ar: 'فريقنا' } },
-  { id: 'gallery', label: { en: 'Gallery', ur: 'تصاویر', ar: 'المعرض' } },
-  { id: 'support', label: { en: 'Support', ur: 'تعاون', ar: 'ادعمنا' } },
+export const nav: { href: string; label: L }[] = [
+  { href: '/', label: { en: 'Home', ur: 'ہوم', ar: 'الرئيسية' } },
+  { href: '/langar-khana/', label: { en: 'Langar Khana', ur: 'لنگر خانہ', ar: 'مطبخ الخير' } },
+  { href: '/stitching-centre/', label: { en: 'Stitching Centre', ur: 'سلائی مرکز', ar: 'مركز الخياطة' } },
+  { href: '/#transport', label: { en: 'Transport and Medical', ur: 'ٹرانسپورٹ اور طبی امداد', ar: 'النقل والطبي' } },
+  { href: '/#contact', label: { en: 'Contact', ur: 'رابطہ', ar: 'تواصل' } },
 ];
 
 export const ui = {
+  learnMore: { en: 'Read more', ur: 'مزید پڑھیں', ar: 'اقرأ المزيد' },
+  backHome: { en: 'Back to home', ur: 'ہوم پر واپس', ar: 'العودة إلى الرئيسية' },
+  comingSoon: { en: 'Photo coming soon', ur: 'تصویر جلد شامل ہو گی', ar: 'الصورة قريبًا' },
+
   cta: { en: 'Support us', ur: 'ہمارا ساتھ دیں', ar: 'ادعمنا' },
   menu: { en: 'Menu', ur: 'مینو', ar: 'القائمة' },
   close: { en: 'Close menu', ur: 'مینو بند کریں', ar: 'إغلاق القائمة' },
@@ -117,7 +120,7 @@ export const challenge = {
   title: { en: 'What our neighbours face', ur: 'ہمارے پڑوسی کن مشکلات میں ہیں', ar: 'ما يواجهه جيراننا' },
   items: [
     {
-      img: '/img/langar/2799.jpg',
+      img: '/img/w/l2787.jpg',
       title: { en: 'Hunger is daily, not occasional', ur: 'بھوک روزانہ کا مسئلہ ہے', ar: 'الجوع يومي وليس عابرًا' },
       body: {
         en: 'Children, women and elders in our town often go without a proper midday meal.',
@@ -126,7 +129,7 @@ export const challenge = {
       },
     },
     {
-      img: '/img/langar/2788.jpg',
+      img: '/img/w/s76.jpg',
       title: { en: 'Women work hard with no ladder up', ur: 'خواتین محنت کرتی ہیں مگر آگے بڑھنے کا راستہ نہیں', ar: 'نساء يكدحن بلا سُلَّم للصعود' },
       body: {
         en: 'Many mothers work in other people’s homes. Their daughters have no route to a skill of their own.',
@@ -135,7 +138,7 @@ export const challenge = {
       },
     },
     {
-      img: '/img/langar/2777.jpg',
+      img: '/img/w/l2797.jpg',
       title: { en: 'The hospital is far away', ur: 'ہسپتال دور ہے', ar: 'المستشفى بعيد' },
       body: {
         en: 'For a sick villager, getting to a good hospital can be harder than the illness itself.',
@@ -144,7 +147,7 @@ export const challenge = {
       },
     },
     {
-      img: '/img/langar/2754.jpg',
+      img: '/img/w/l2754.jpg',
       title: { en: 'Good care is out of reach', ur: 'اچھا علاج پہنچ سے باہر', ar: 'الرعاية الجيدة بعيدة المنال' },
       body: {
         en: 'Qualified doctors, scans and medicines are rarely within a family’s means.',
@@ -153,7 +156,7 @@ export const challenge = {
       },
     },
     {
-      img: '/img/langar/2792.jpg',
+      img: '/img/w/l2795.jpg',
       title: { en: 'Aid alone does not last', ur: 'صرف امداد پائیدار نہیں', ar: 'المساعدة وحدها لا تدوم' },
       body: {
         en: 'Handing out help is not enough. People need a way to stand on their own feet.',
@@ -172,7 +175,8 @@ export const work = {
     {
       n: '01',
       icon: 'bowl',
-      img: '/img/langar/2750.jpg',
+      img: '/img/w/l2796.jpg',
+      href: '/langar-khana/',
       title: { en: 'Langar Khana', ur: 'لنگر خانہ', ar: 'مطبخ الخير' },
       body: {
         en: 'A hot meal for anyone who comes, served at midday in a clean hall, with dignity.',
@@ -189,8 +193,9 @@ export const work = {
     {
       n: '02',
       icon: 'needle',
-      img: '/img/langar/2725.jpg',
-      title: { en: 'Sewing School', ur: 'سلائی سکول', ar: 'مدرسة الخياطة' },
+      img: '/img/w/s61.jpg',
+      href: '/stitching-centre/',
+      title: { en: 'Stitching Centre', ur: 'سلائی مرکز', ar: 'مركز الخياطة' },
       body: {
         en: 'Each afternoon, after the meal, women and girls learn to sew garments and become self-sufficient.',
         ur: 'ہر دوپہر کھانے کے بعد خواتین اور لڑکیاں کپڑے سینا سیکھتی ہیں اور خود کفیل بنتی ہیں۔',
@@ -206,7 +211,8 @@ export const work = {
     {
       n: '03',
       icon: 'car',
-      img: '/img/langar/2721.jpg',
+      img: '',
+      href: '/#transport',
       title: { en: 'Transport and Medical Aid', ur: 'ٹرانسپورٹ اور طبی امداد', ar: 'النقل والمساعدة الطبية' },
       body: {
         en: 'Every morning our car carries patients from Rajajang to a hospital nearby and brings them home.',
@@ -225,16 +231,17 @@ export const work = {
 
 /* ---------------- HOW THE SEWING MODEL WORKS (stacking cards) ---------------- */
 export const model = {
-  eyebrow: { en: 'The sewing model', ur: 'سلائی کا ماڈل', ar: 'نموذج الخياطة' },
+  eyebrow: { en: 'The stitching model', ur: 'سلائی مرکز کا ماڈل', ar: 'نموذج مركز الخياطة' },
   title: { en: 'From first stitch to own machine', ur: 'پہلے ٹانکے سے اپنی مشین تک', ar: 'من الغرزة الأولى إلى آلتك الخاصة' },
   lede: {
-    en: 'Our food programme feeds people today. Our sewing school is different. It is built so that each woman leaves needing us less.',
-    ur: 'ہمارا لنگر آج کی بھوک مٹاتا ہے۔ سلائی سکول مختلف ہے۔ اسے اس طرح بنایا گیا ہے کہ ہر خاتون ہمارے سہارے کی کم سے کم محتاج رہے۔',
-    ar: 'مطبخنا يُشبع الناس اليوم. أما مدرسة الخياطة فهي مختلفة؛ فقد صُمّمت لتحتاج كل امرأة إلينا أقل فأقل.',
+    en: 'Our food programme feeds people today. Our stitching centre is different. It is built so that each woman leaves needing us less.',
+    ur: 'ہمارا لنگر آج کی بھوک مٹاتا ہے۔ سلائی مرکز مختلف ہے۔ اسے اس طرح بنایا گیا ہے کہ ہر خاتون ہمارے سہارے کی کم سے کم محتاج رہے۔',
+    ar: 'مطبخنا يُشبع الناس اليوم. أما مركز الخياطة فهي مختلفة؛ فقد صُمّمت لتحتاج كل امرأة إلينا أقل فأقل.',
   },
   steps: [
     {
       n: '01',
+      img: '/img/w/s63.jpg',
       tag: { en: 'Day one', ur: 'پہلا دن', ar: 'اليوم الأول' },
       title: { en: 'Come after the meal', ur: 'کھانے کے بعد آئیں', ar: 'تعالَي بعد الوجبة' },
       body: {
@@ -245,6 +252,7 @@ export const model = {
     },
     {
       n: '02',
+      img: '/img/w/s15.jpg',
       tag: { en: 'Months 1 to 6', ur: 'ماہ ۱ تا ۶', ar: 'الأشهر ١ إلى ٦' },
       title: { en: 'Learn on cloth and thread', ur: 'کپڑے اور دھاگے پر سیکھیں', ar: 'تعلَّمي على القماش والخيط' },
       body: {
@@ -255,6 +263,7 @@ export const model = {
     },
     {
       n: '03',
+      img: '/img/w/s18.jpg',
       tag: { en: 'After training', ur: 'تربیت کے بعد', ar: 'بعد التدريب' },
       title: { en: 'Sew real garments and earn', ur: 'اصل ملبوسات سیئیں اور کمائیں', ar: 'خيطي ملابس حقيقية واكسبي' },
       body: {
@@ -265,6 +274,7 @@ export const model = {
     },
     {
       n: '04',
+      img: '/img/w/s61.jpg',
       tag: { en: 'Independence', ur: 'خود کفالت', ar: 'الاستقلال' },
       title: { en: 'Own machine, own income', ur: 'اپنی مشین، اپنی آمدنی', ar: 'آلتها الخاصة، ودخلها الخاص' },
       body: {
@@ -325,36 +335,63 @@ export const proof = {
     },
     {
       when: { en: 'Every afternoon', ur: 'ہر سہ پہر', ar: 'كل عصر' },
-      title: { en: 'The sewing school', ur: 'سلائی سکول', ar: 'مدرسة الخياطة' },
+      title: { en: 'The stitching centre', ur: 'سلائی مرکز', ar: 'مركز الخياطة' },
       body: { en: 'Once the diners leave, the same hall becomes a classroom for about 30 girls.', ur: 'کھانے والے رخصت ہوتے ہیں تو وہی ہال تقریباً ۳۰ لڑکیوں کے لیے کلاس روم بن جاتا ہے۔', ar: 'بعد انصراف الضيوف تتحول القاعة نفسها إلى صف دراسي لنحو ٣٠ فتاة.' },
     },
   ],
 };
 
-/* ---------------- TEAM ---------------- */
-export const team = {
+/* ---------------- TEAMS ---------------- */
+type Person = { img: string; name: L; role: L; note: L };
+const helper = (img: string, name: L): Person => ({
+  img, name,
+  role: { en: 'Helper', ur: 'معاون', ar: 'مساعد' },
+  note: { en: 'Helps prepare, carry and clean up.', ur: 'تیاری، اٹھانے رکھنے اور صفائی میں ہاتھ بٹاتے ہیں۔', ar: 'يساعد في التحضير والحمل والتنظيف.' },
+});
+
+export const teamFood = {
   eyebrow: { en: 'The people', ur: 'ہمارے لوگ', ar: 'أهلنا' },
   title: { en: 'The hands behind every meal', ur: 'ہر نوالے کے پیچھے ہاتھ', ar: 'الأيدي وراء كل وجبة' },
   lede: {
-    en: 'Six or seven men run the kitchen each day, including our cook. Our driver and our director keep the wider work moving.',
-    ur: 'ہر روز چھ سات افراد لنگر چلاتے ہیں، جن میں باورچی بھی شامل ہے۔ ہمارے ڈرائیور اور ڈائریکٹر باقی کام کو آگے بڑھاتے ہیں۔',
-    ar: 'يدير المطبخ كل يوم ستة أو سبعة رجال، منهم الطبّاخ. ويحافظ سائقنا ومديرتنا على سير بقية الأعمال.',
+    en: 'Six or seven men run the kitchen each day, including our cook.',
+    ur: 'ہر روز چھ سات افراد لنگر چلاتے ہیں، جن میں باورچی بھی شامل ہے۔',
+    ar: 'يدير المطبخ كل يوم ستة أو سبعة رجال، منهم الطبّاخ.',
   },
   people: [
-    { img: '/img/team/director.jpg', name: { en: 'Director', ur: 'ڈائریکٹر', ar: 'المديرة' }, role: { en: 'Leads the charity', ur: 'ادارے کی سربراہی', ar: 'تقود الجمعية' }, note: { en: 'Guides the programmes and the legal registration of Dar-e-Rehmat.', ur: 'پروگراموں اور دارِ رحمت کی قانونی رجسٹریشن کی رہنمائی کرتی ہیں۔', ar: 'ترشد البرامج وإجراءات التسجيل القانوني لدار الرحمة.' } },
     { img: '/img/team/shafique_supervisor.jpg', name: { en: 'Shafique', ur: 'شفیق', ar: 'شفيق' }, role: { en: 'Supervisor', ur: 'سپروائزر', ar: 'المشرف' }, note: { en: 'Oversees the kitchen and the dining hall each day.', ur: 'روزانہ لنگر اور ہال کی نگرانی کرتے ہیں۔', ar: 'يشرف يوميًا على المطبخ وقاعة الطعام.' } },
     { img: '/img/team/aziz_chef.jpg', name: { en: 'Aziz', ur: 'عزیز', ar: 'عزيز' }, role: { en: 'Chef', ur: 'باورچی', ar: 'الطبّاخ' }, note: { en: 'Cooks the midday meal for up to 300 people.', ur: 'تین سو افراد تک کے لیے دوپہر کا کھانا پکاتے ہیں۔', ar: 'يطبخ وجبة الغداء لما يصل إلى ٣٠٠ شخص.' } },
     { img: '/img/team/janna_distributor.jpg', name: { en: 'Janna', ur: 'جنّا', ar: 'جنّا' }, role: { en: 'Distributor', ur: 'تقسیم کار', ar: 'موزّع الطعام' }, note: { en: 'Serves the food and makes sure everyone is looked after.', ur: 'کھانا تقسیم کرتے ہیں اور ہر ایک کا خیال رکھتے ہیں۔', ar: 'يوزّع الطعام ويحرص على أن يُعتنى بالجميع.' } },
-    { img: '/img/team/manzoor_helper.jpg', name: { en: 'Manzoor', ur: 'منظور', ar: 'منظور' }, role: { en: 'Helper', ur: 'معاون', ar: 'مساعد' }, note: { en: 'Helps prepare, carry and clean up.', ur: 'تیاری، اٹھانے رکھنے اور صفائی میں ہاتھ بٹاتے ہیں۔', ar: 'يساعد في التحضير والحمل والتنظيف.' } },
-    { img: '/img/team/jaj_shah_helper.jpg', name: { en: 'Jaj Shah', ur: 'جاج شاہ', ar: 'جاج شاه' }, role: { en: 'Helper', ur: 'معاون', ar: 'مساعد' }, note: { en: 'Helps prepare, carry and clean up.', ur: 'تیاری، اٹھانے رکھنے اور صفائی میں ہاتھ بٹاتے ہیں۔', ar: 'يساعد في التحضير والحمل والتنظيف.' } },
-    { img: '/img/team/rehamt_ali_helper.jpg', name: { en: 'Rehmat Ali', ur: 'رحمت علی', ar: 'رحمت علي' }, role: { en: 'Helper', ur: 'معاون', ar: 'مساعد' }, note: { en: 'Helps prepare, carry and clean up.', ur: 'تیاری، اٹھانے رکھنے اور صفائی میں ہاتھ بٹاتے ہیں۔', ar: 'يساعد في التحضير والحمل والتنظيف.' } },
-    { img: '/img/team/waris_helper.jpg', name: { en: 'Waris', ur: 'وارث', ar: 'وارث' }, role: { en: 'Helper', ur: 'معاون', ar: 'مساعد' }, note: { en: 'Helps prepare, carry and clean up.', ur: 'تیاری، اٹھانے رکھنے اور صفائی میں ہاتھ بٹاتے ہیں۔', ar: 'يساعد في التحضير والحمل والتنظيف.' } },
-  ] as { img: string; name: L; role: L; note: L }[],
+    helper('/img/team/manzoor_helper.jpg', { en: 'Manzoor', ur: 'منظور', ar: 'منظور' }),
+    helper('/img/team/jaj_shah_helper.jpg', { en: 'Jaj Shah', ur: 'جاج شاہ', ar: 'جاج شاه' }),
+    helper('/img/team/rehamt_ali_helper.jpg', { en: 'Rehmat Ali', ur: 'رحمت علی', ar: 'رحمت علي' }),
+    helper('/img/team/waris_helper.jpg', { en: 'Waris', ur: 'وارث', ar: 'وارث' }),
+  ] as Person[],
 };
 
-/* ---------------- SEWING SCHOOL + TEACHER ---------------- */
-export const school = {
-  eyebrow: { en: 'Dastakari School', ur: 'دستکاری سکول', ar: 'مدرسة الحِرَف' },
+export const teamCentre = {
+  eyebrow: { en: 'The people', ur: 'ہمارے لوگ', ar: 'أهلنا' },
+  title: { en: 'The hands behind every stitch', ur: 'ہر ٹانکے کے پیچھے ہاتھ', ar: 'الأيدي وراء كل غرزة' },
+  lede: {
+    en: 'The centre is led by its director and taught by a volunteer teacher.',
+    ur: 'مرکز کی سربراہی ڈائریکٹر کرتی ہیں اور تدریس ایک رضاکار استانی کے ذمے ہے۔',
+    ar: 'تقود المركزَ مديرتُه وتتولى التدريسَ معلمة متطوعة.',
+  },
+  people: [
+    { img: '/img/team/director.jpg', name: { en: 'Director', ur: 'ڈائریکٹر', ar: 'المديرة' }, role: { en: 'Director of the Stitching Centre', ur: 'سلائی مرکز کی ڈائریکٹر', ar: 'مديرة مركز الخياطة' }, note: { en: 'Leads the centre and the training of every girl.', ur: 'مرکز اور ہر لڑکی کی تربیت کی سربراہی کرتی ہیں۔', ar: 'تقود المركز وتدريب كل فتاة.' } },
+    { img: '/img/team/yasmeen.jpg', name: { en: 'Yasmeen Iqbal Master', ur: 'یاسمین اقبال ماسٹر', ar: 'ياسمين إقبال ماستر' }, role: { en: 'Volunteer teacher', ur: 'رضاکار استانی', ar: 'معلمة متطوعة' }, note: { en: 'Teaches stitching to the girls every afternoon.', ur: 'ہر سہ پہر لڑکیوں کو سلائی سکھاتی ہیں۔', ar: 'تعلّم الفتيات الخياطة كل عصر.' } },
+  ] as Person[],
+};
+
+/* ---------------- STITCHING CENTRE PAGE ---------------- */
+export const centre = {
+  eyebrow: { en: 'Dastakari Centre', ur: 'دستکاری مرکز', ar: 'مركز الحِرَف' },
+  pageTitle: { en: 'The Stitching Centre', ur: 'سلائی مرکز', ar: 'مركز الخياطة' },
+  pageSub: {
+    en: 'Every afternoon, after the midday meal, the same hall becomes a classroom where women and girls learn a skill that lasts a lifetime.',
+    ur: 'ہر سہ پہر دوپہر کے کھانے کے بعد وہی ہال کلاس روم بن جاتا ہے جہاں خواتین اور لڑکیاں عمر بھر کا ہنر سیکھتی ہیں۔',
+    ar: 'كل عصر، بعد غداء الظهيرة، تتحول القاعة نفسها إلى صف تتعلم فيه النساء والفتيات مهارة تدوم مدى الحياة.',
+  },
+  banner: '/img/w/s65.jpg',
   title: { en: 'Skills that outlast any meal', ur: 'ایسا ہنر جو ہر کھانے سے بڑھ کر ہے', ar: 'مهارة تدوم أكثر من أي وجبة' },
   lede: {
     en: 'Giving a skill to someone who knows nothing, and making her self-sufficient in six months, is a model the world needs. It is sustainable because it ends in independence, not in waiting for the next handout.',
@@ -363,32 +400,90 @@ export const school = {
   },
   teacherName: { en: 'Yasmeen Iqbal Master', ur: 'یاسمین اقبال ماسٹر', ar: 'ياسمين إقبال ماستر' },
   teacherRole: { en: 'Volunteer teacher', ur: 'رضاکار استانی', ar: 'معلمة متطوعة' },
+  videoTitle: { en: 'Meet our teacher', ur: 'ہماری استانی سے ملیں', ar: 'تعرّف على معلمتنا' },
   clipsTitle: { en: 'Inside the classroom', ur: 'کلاس روم کے اندر', ar: 'داخل الصف' },
+  garmentsEyebrow: { en: 'The end product', ur: 'تیار شدہ ملبوسات', ar: 'المنتج النهائي' },
+  garmentsTitle: { en: 'Garments made by our girls', ur: 'ہماری لڑکیوں کے بنائے ملبوسات', ar: 'ملابس صنعتها فتياتنا' },
   garmentsNote: {
     en: 'More garment photos will be added here as the girls complete them.',
     ur: 'جیسے جیسے لڑکیاں ملبوسات مکمل کریں گی، مزید تصاویر یہاں شامل کی جائیں گی۔',
     ar: 'ستُضاف صور أخرى للملابس هنا كلما أنجزتها الفتيات.',
   },
+  garments: [
+    { src: '/img/w/s14.jpg', alt: { en: 'A finished printed dress for a child', ur: 'بچی کا تیار شدہ پرنٹڈ فراک', ar: 'فستان مطبوع جاهز لطفلة' } },
+    { src: '/img/w/s21.jpg', alt: { en: 'A finished blue patterned dress', ur: 'نیلے ڈیزائن کا تیار شدہ فراک', ar: 'فستان أزرق منقوش جاهز' } },
+  ] as { src: string; alt: L }[],
+  galleryEyebrow: { en: 'In the hall', ur: 'ہال کے اندر', ar: 'داخل القاعة' },
+  galleryTitle: { en: 'Learning, cutting, ironing, sewing', ur: 'سیکھنا، کاٹنا، استری کرنا، سینا', ar: 'التعلّم والقص والكيّ والخياطة' },
+  gallery: [
+    { src: '/img/w/s1.jpg', alt: { en: 'Hands guiding cloth under the needle', ur: 'سوئی کے نیچے کپڑا سرکاتے ہاتھ', ar: 'أيدٍ توجّه القماش تحت الإبرة' } },
+    { src: '/img/w/s17.jpg', alt: { en: 'Cutting bright fabric with scissors', ur: 'قینچی سے چمکدار کپڑا کاٹا جا رہا ہے', ar: 'قص قماش زاهٍ بالمقص' } },
+    { src: '/img/w/s55.jpg', alt: { en: 'A trainee at her sewing machine', ur: 'اپنی مشین پر کام کرتی ایک سیکھنے والی', ar: 'متدرّبة عند آلة الخياطة' } },
+    { src: '/img/w/s39.jpg', alt: { en: 'A student notebook on machine parts', ur: 'مشین کے پرزوں پر طالبہ کی کاپی', ar: 'دفتر طالبة عن أجزاء الآلة' } },
+    { src: '/img/w/s12.jpg', alt: { en: 'Sewing a floral fabric', ur: 'پھولدار کپڑے کی سلائی', ar: 'خياطة قماش مزهّر' } },
+    { src: '/img/w/s59.jpg', alt: { en: 'Stitching blue cloth by hand', ur: 'نیلے کپڑے پر ہاتھ کی سلائی', ar: 'خياطة قماش أزرق يدويًا' } },
+    { src: '/img/w/s25.jpg', alt: { en: 'Ironing a finished piece', ur: 'تیار ٹکڑے کی استری', ar: 'كيّ قطعة منتهية' } },
+    { src: '/img/w/s49.jpg', alt: { en: 'A pattern drawn in a notebook', ur: 'کاپی میں بنایا گیا پیٹرن', ar: 'نموذج مرسوم في دفتر' } },
+    { src: '/img/w/s68.jpg', alt: { en: 'Sewing yellow fabric', ur: 'پیلے کپڑے کی سلائی', ar: 'خياطة قماش أصفر' } },
+    { src: '/img/w/s84.jpg', alt: { en: 'A teacher at her machine, guiding a student', ur: 'استانی مشین پر طالبہ کی رہنمائی کرتے ہوئے', ar: 'معلمة عند آلتها ترشد طالبة' } },
+    { src: '/img/w/s83.jpg', alt: { en: 'Hand finishing a bright garment', ur: 'روشن ملبوس پر ہاتھ کی تکمیل', ar: 'إتمام ثوب زاهٍ يدويًا' } },
+    { src: '/img/w/s89.jpg', alt: { en: 'Two learners at work', ur: 'دو سیکھنے والیاں کام کرتے ہوئے', ar: 'متعلّمتان تعملان' } },
+    { src: '/img/w/s51.jpg', alt: { en: 'Pattern shapes and scissors in a notebook', ur: 'کاپی میں پیٹرن کی شکلیں اور قینچی', ar: 'أشكال نماذج ومقص في دفتر' } },
+    { src: '/img/w/s27.jpg', alt: { en: 'The whole hall during class', ur: 'کلاس کے دوران پورا ہال', ar: 'القاعة كلها أثناء الدرس' } },
+  ] as { src: string; alt: L }[],
 };
 
-/* ---------------- GALLERY ---------------- */
-export const gallery = {
-  eyebrow: { en: 'The kitchen and the hall', ur: 'باورچی خانہ اور ہال', ar: 'المطبخ والقاعة' },
-  title: { en: 'Where the work happens', ur: 'جہاں یہ کام ہوتا ہے', ar: 'حيث يتم العمل' },
-  items: [
-    { src: '/img/langar/2789.jpg', alt: { en: 'The dining hall during the midday meal', ur: 'دوپہر کے کھانے کے وقت ڈائننگ ہال', ar: 'قاعة الطعام أثناء الغداء' } },
-    { src: '/img/langar/2750.jpg', alt: { en: 'A large pot of curry being stirred', ur: 'بڑی دیگ میں سالن چلایا جا رہا ہے', ar: 'قدر كبير يُحرَّك فيه المرق' } },
-    { src: '/img/langar/2777.jpg', alt: { en: 'Bowls being filled from the pot', ur: 'دیگ سے پیالے بھرے جا رہے ہیں', ar: 'تُملأ الأوعية من القدر' } },
-    { src: '/img/langar/2784.jpg', alt: { en: 'Children eating together', ur: 'بچے مل کر کھانا کھا رہے ہیں', ar: 'أطفال يأكلون معًا' } },
-    { src: '/img/langar/2753.jpg', alt: { en: 'Green herbs cooking in a large pot', ur: 'بڑی دیگ میں ہری ترکاری پک رہی ہے', ar: 'أعشاب خضراء تُطبخ في قدر كبير' } },
-    { src: '/img/langar/2725.jpg', alt: { en: 'The clean prayer-mat hall before service', ur: 'کھانے سے پہلے صاف ستھرا ہال', ar: 'القاعة النظيفة قبل التقديم' } },
-    { src: '/img/langar/2754.jpg', alt: { en: 'Food being packed for takeaway', ur: 'گھر لے جانے کے لیے کھانا پیک کیا جا رہا ہے', ar: 'تعبئة الطعام ليؤخذ إلى البيت' } },
-    { src: '/img/langar/2794.jpg', alt: { en: 'Fresh flatbread served at the table', ur: 'دسترخوان پر تازہ روٹی', ar: 'خبز طازج على المائدة' } },
-    { src: '/img/langar/2792.jpg', alt: { en: 'Serving the diners', ur: 'کھانے والوں کو کھانا پیش کیا جا رہا ہے', ar: 'تقديم الطعام للضيوف' } },
-    { src: '/img/langar/2728.jpg', alt: { en: 'Spices and rice prepared for cooking', ur: 'پکانے کے لیے مصالحے اور چاول', ar: 'توابل وأرز مجهزة للطبخ' } },
-    { src: '/img/langar/2744.jpg', alt: { en: 'Grain roasting in a pan', ur: 'کڑاہی میں اناج بھونا جا رہا ہے', ar: 'حبوب تُحمَّص في مقلاة' } },
-    { src: '/img/langar/2733.jpg', alt: { en: 'The clean kitchen counter and sink', ur: 'صاف باورچی خانے کا کاؤنٹر اور سنک', ar: 'منضدة المطبخ والحوض النظيفان' } },
+/* ---------------- LANGAR KHANA PAGE ---------------- */
+export const langar = {
+  pageTitle: { en: 'Langar Khana', ur: 'لنگر خانہ', ar: 'مطبخ الخير' },
+  pageSub: {
+    en: 'A hot midday meal for 280 to 300 people every day, served with dignity and never closed.',
+    ur: 'روزانہ ۲۸۰ سے ۳۰۰ افراد کے لیے دوپہر کا گرم کھانا، عزت کے ساتھ اور بغیر ناغے کے۔',
+    ar: 'وجبة غداء ساخنة لما بين ٢٨٠ و٣٠٠ شخص كل يوم، تُقدَّم بكرامة ولا تتوقف.',
+  },
+  banner: '/img/w/l2768.jpg',
+  intro: {
+    en: 'The kitchen opens every day at midday. Children, women and elders sit together on clean mats and eat. Around 40 of the 60 to 70 women who come each day bring their children to dine, and the rest take packed food home for the little ones.',
+    ur: 'لنگر ہر روز دوپہر کو کھلتا ہے۔ بچے، خواتین اور بزرگ صاف چٹائیوں پر ساتھ بیٹھ کر کھاتے ہیں۔ روز آنے والی ۶۰ سے ۷۰ خواتین میں سے تقریباً ۴۰ اپنے بچوں کو ساتھ لاتی ہیں اور باقی چھوٹوں کے لیے گھر پیک کھانا لے جاتی ہیں۔',
+    ar: 'يفتح المطبخ أبوابه كل يوم عند الظهيرة. يجلس الأطفال والنساء وكبار السن معًا على حصائر نظيفة ويأكلون. نحو ٤٠ من النساء اللواتي يأتين كل يوم، وعددهن بين ٦٠ و٧٠، يُحضرن أطفالهن لتناول الطعام، والبقية يأخذن طعامًا معبّأً إلى الصغار في البيت.',
+  },
+  galleryEyebrow: { en: 'The kitchen and the hall', ur: 'باورچی خانہ اور ہال', ar: 'المطبخ والقاعة' },
+  galleryTitle: { en: 'Where the work happens', ur: 'جہاں یہ کام ہوتا ہے', ar: 'حيث يتم العمل' },
+  gallery: [
+    { src: '/img/w/l2777.jpg', alt: { en: 'Bowls being filled from the pot', ur: 'دیگ سے پیالے بھرے جا رہے ہیں', ar: 'تُملأ الأوعية من القدر' } },
+    { src: '/img/w/l2792.jpg', alt: { en: 'Serving the diners', ur: 'کھانے والوں کو کھانا پیش کیا جا رہا ہے', ar: 'تقديم الطعام للضيوف' } },
+    { src: '/img/w/l2753.jpg', alt: { en: 'Green herbs cooking in a large pot', ur: 'بڑی دیگ میں ہری ترکاری پک رہی ہے', ar: 'أعشاب خضراء تُطبخ في قدر كبير' } },
+    { src: '/img/w/l2728.jpg', alt: { en: 'Spices and rice prepared for cooking', ur: 'پکانے کے لیے مصالحے اور چاول', ar: 'توابل وأرز مجهزة للطبخ' } },
+    { src: '/img/w/l2725.jpg', alt: { en: 'The clean prayer-mat hall before service', ur: 'کھانے سے پہلے صاف ستھرا ہال', ar: 'القاعة النظيفة قبل التقديم' } },
+    { src: '/img/w/l2744.jpg', alt: { en: 'Grain roasting in a pan', ur: 'کڑاہی میں اناج بھونا جا رہا ہے', ar: 'حبوب تُحمَّص في مقلاة' } },
+    { src: '/img/w/l2740.jpg', alt: { en: 'A large pot of curry being stirred', ur: 'بڑی دیگ میں سالن چلایا جا رہا ہے', ar: 'قدر كبير يُحرَّك فيه المرق' } },
+    { src: '/img/w/l2796.jpg', alt: { en: 'Men eating together', ur: 'مرد مل کر کھانا کھا رہے ہیں', ar: 'رجال يأكلون معًا' } },
+    { src: '/img/w/l2734.jpg', alt: { en: 'A rich curry simmering under its lid', ur: 'ڈھکن کے نیچے پکتا گاڑھا سالن', ar: 'مرق دسم يغلي تحت غطائه' } },
+    { src: '/img/w/l2770.jpg', alt: { en: 'A visitor arriving for the meal', ur: 'کھانے کے لیے آنے والا ایک مہمان', ar: 'زائر يصل لتناول الوجبة' } },
   ] as { src: string; alt: L }[],
+};
+
+/* ---------------- TRANSPORT AND MEDICAL (home section) ---------------- */
+export const transport = {
+  eyebrow: { en: 'Transport and medical aid', ur: 'ٹرانسپورٹ اور طبی امداد', ar: 'النقل والمساعدة الطبية' },
+  title: { en: 'A ride to the hospital, every morning', ur: 'ہر صبح ہسپتال تک سواری', ar: 'رحلة إلى المستشفى كل صباح' },
+  body: {
+    en: 'Each morning our seven-seater car takes patients from Rajajang to a hospital nearby, with a driver we hire for the work. They see highly qualified doctors, get full body scans and receive free medicines, including specialist ones, and then we bring them home.',
+    ur: 'ہر صبح ہماری سات سیٹوں والی گاڑی مریضوں کو راجہ جنگ سے قریبی ہسپتال لے جاتی ہے، جس کے لیے ہم نے ڈرائیور رکھا ہوا ہے۔ وہاں وہ اعلیٰ تعلیم یافتہ ڈاکٹروں سے معائنہ کراتے ہیں، مکمل باڈی سکین کراتے ہیں اور مفت ادویات پاتے ہیں، جن میں خصوصی ادویات بھی شامل ہیں، پھر ہم انہیں گھر واپس پہنچاتے ہیں۔',
+    ar: 'كل صباح تنقل سيارتنا ذات السبعة مقاعد المرضى من راجاجانغ إلى مستشفى قريب، مع سائق استأجرناه لهذا العمل. يلتقون أطباء ذوي كفاءة عالية، ويُجرون فحوصات شاملة للجسم، ويحصلون على أدوية مجانية، منها المتخصصة، ثم نعيدهم إلى بيوتهم.',
+  },
+  facts: [
+    { en: 'One trip every morning', ur: 'ہر صبح ایک سفر', ar: 'رحلة واحدة كل صباح' },
+    { en: 'Seven-seater car', ur: 'سات سیٹوں والی گاڑی', ar: 'سيارة بسبعة مقاعد' },
+    { en: 'Nearly 600 people supported', ur: 'تقریباً ۶۰۰ افراد کی معاونت', ar: 'دعم نحو ٦٠٠ شخص' },
+    { en: 'Doctors, scans and free medicines', ur: 'ڈاکٹر، سکین اور مفت ادویات', ar: 'أطباء وفحوصات وأدوية مجانية' },
+  ] as L[],
+  // Car photos and video frames go here once supplied. Empty list shows labelled placeholders.
+  images: [] as { src: string; alt: L }[],
+  driverRole: { en: 'Driver', ur: 'ڈرائیور', ar: 'السائق' },
+  driverNote: { en: 'Drives our patients to hospital and brings them home.', ur: 'ہمارے مریضوں کو ہسپتال لے جاتے اور گھر واپس پہنچاتے ہیں۔', ar: 'ينقل مرضانا إلى المستشفى ويعيدهم إلى بيوتهم.' },
+  // PLACEHOLDER: driver photo and name not yet supplied.
+  driver: { img: '', name: { en: 'Our driver', ur: 'ہمارے ڈرائیور', ar: 'سائقنا' } },
 };
 
 /* ---------------- SUPPORT (sticky split) ---------------- */
@@ -414,9 +509,9 @@ export const location = {
   eyebrow: { en: 'Find us', ur: 'ہمیں تلاش کریں', ar: 'موقعنا' },
   title: { en: 'Rajajang', ur: 'راجہ جنگ', ar: 'راجاجانغ' },
   body: {
-    en: 'The langar, the sewing school and the patient car all run from our town. Open the pin to find us.',
-    ur: 'لنگر، سلائی سکول اور مریضوں کی گاڑی سب ہمارے اسی قصبے سے چلتے ہیں۔ ہمیں ڈھونڈنے کے لیے نقشہ کھولیں۔',
-    ar: 'المطبخ ومدرسة الخياطة وسيارة المرضى كلها تنطلق من بلدتنا. افتح الموقع لتجدنا.',
+    en: 'The langar, the stitching centre and the patient car all run from our town. Open the pin to find us.',
+    ur: 'لنگر، سلائی مرکز اور مریضوں کی گاڑی سب ہمارے اسی قصبے سے چلتے ہیں۔ ہمیں ڈھونڈنے کے لیے نقشہ کھولیں۔',
+    ar: 'المطبخ ومركز الخياطة وسيارة المرضى كلها تنطلق من بلدتنا. افتح الموقع لتجدنا.',
   },
 };
 
@@ -473,11 +568,6 @@ export const footer = {
   },
 };
 
-export const heroImages = [
-  '/img/langar/2789.jpg',
-  '/img/langar/2750.jpg',
-  '/img/langar/2784.jpg',
-  '/img/langar/2799.jpg',
-];
-export const bandImage = '/img/langar/2788.jpg';
-export const contactImage = '/img/langar/2725.jpg';
+export const heroImages = ['/img/w/l2784.jpg', '/img/w/l2788.jpg', '/img/w/l2750.jpg', '/img/w/l2799.jpg'];
+export const bandImage = '/img/w/l2790.jpg';
+export const contactImage = '/img/w/l2782.jpg';
