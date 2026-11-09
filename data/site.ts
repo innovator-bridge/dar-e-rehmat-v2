@@ -138,7 +138,7 @@ export const challenge = {
       },
     },
     {
-      img: '/img/w/l2797.jpg',
+      img: '/img/w/l2759.jpg',
       title: { en: 'The hospital is far away', ur: 'ہسپتال دور ہے', ar: 'المستشفى بعيد' },
       body: {
         en: 'For a sick villager, getting to a good hospital can be harder than the illness itself.',
