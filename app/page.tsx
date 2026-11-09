@@ -1,7 +1,7 @@
 import Shell from '@/components/Shell';
-import { Hero, Marquee, Manifesto, Challenge, WorkRail } from '@/components/SectionsA';
-import { Proof, Transport, Support, Location, Contact, PeopleGrid } from '@/components/SectionsB';
-import { teamFood, teamCentre } from '@/data/site';
+import { Hero, Marquee, Manifesto, Challenge, WorkRail, Model } from '@/components/SectionsA';
+import { Proof, Transport, Support, Location, Contact, PeopleGrid, PhotoWall, Teacher } from '@/components/SectionsB';
+import { teamFood, teamCentre, centre } from '@/data/site';
 
 export default function Home() {
   return (
@@ -13,7 +13,10 @@ export default function Home() {
       <WorkRail />
       <Proof />
       <PeopleGrid data={teamFood} id="team" />
+      <Model />
+      <PhotoWall eyebrow={centre.garmentsEyebrow} title={centre.garmentsTitle} items={centre.garments} id="garments" tone="mist" />
       <PeopleGrid data={teamCentre} id="team-centre" plain />
+      <Teacher />
       <Transport />
       <Support />
       <Location />
