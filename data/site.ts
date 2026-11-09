@@ -211,7 +211,7 @@ export const work = {
     {
       n: '03',
       icon: 'car',
-      img: '',
+      img: '/img/car/van-side.jpg',
       href: '/#transport',
       title: { en: 'Transport and Medical Aid', ur: 'ٹرانسپورٹ اور طبی امداد', ar: 'النقل والمساعدة الطبية' },
       body: {
@@ -468,9 +468,9 @@ export const transport = {
   eyebrow: { en: 'Transport and medical aid', ur: 'ٹرانسپورٹ اور طبی امداد', ar: 'النقل والمساعدة الطبية' },
   title: { en: 'A ride to the hospital, every morning', ur: 'ہر صبح ہسپتال تک سواری', ar: 'رحلة إلى المستشفى كل صباح' },
   body: {
-    en: 'Each morning our seven-seater car takes patients from Rajajang to a hospital nearby, with a driver we hire for the work. They see highly qualified doctors, get full body scans and receive free medicines, including specialist ones, and then we bring them home.',
-    ur: 'ہر صبح ہماری سات سیٹوں والی گاڑی مریضوں کو راجہ جنگ سے قریبی ہسپتال لے جاتی ہے، جس کے لیے ہم نے ڈرائیور رکھا ہوا ہے۔ وہاں وہ اعلیٰ تعلیم یافتہ ڈاکٹروں سے معائنہ کراتے ہیں، مکمل باڈی سکین کراتے ہیں اور مفت ادویات پاتے ہیں، جن میں خصوصی ادویات بھی شامل ہیں، پھر ہم انہیں گھر واپس پہنچاتے ہیں۔',
-    ar: 'كل صباح تنقل سيارتنا ذات السبعة مقاعد المرضى من راجاجانغ إلى مستشفى قريب، مع سائق استأجرناه لهذا العمل. يلتقون أطباء ذوي كفاءة عالية، ويُجرون فحوصات شاملة للجسم، ويحصلون على أدوية مجانية، منها المتخصصة، ثم نعيدهم إلى بيوتهم.',
+    en: 'Each morning our seven-seater car takes patients from Rajajang to Indus Hospital in Jubilee Town, Lahore, with a driver we hire for the work. They see highly qualified doctors, get full body scans and receive free medicines, including specialist ones, and then we bring them home.',
+    ur: 'ہر صبح ہماری سات سیٹوں والی گاڑی مریضوں کو راجہ جنگ سے انڈس ہسپتال، جوبلی ٹاؤن، لاہور لے جاتی ہے، جس کے لیے ہم نے ڈرائیور رکھا ہوا ہے۔ وہاں وہ اعلیٰ تعلیم یافتہ ڈاکٹروں سے معائنہ کراتے ہیں، مکمل باڈی سکین کراتے ہیں اور مفت ادویات پاتے ہیں، جن میں خصوصی ادویات بھی شامل ہیں، پھر ہم انہیں گھر واپس پہنچاتے ہیں۔',
+    ar: 'كل صباح تنقل سيارتنا ذات السبعة مقاعد المرضى من راجاجانغ إلى مستشفى إندوس في جوبيلي تاون بلاهور، مع سائق استأجرناه لهذا العمل. يلتقون أطباء ذوي كفاءة عالية، ويُجرون فحوصات شاملة للجسم، ويحصلون على أدوية مجانية، منها المتخصصة، ثم نعيدهم إلى بيوتهم.',
   },
   facts: [
     { en: 'One trip every morning', ur: 'ہر صبح ایک سفر', ar: 'رحلة واحدة كل صباح' },
@@ -478,18 +478,17 @@ export const transport = {
     { en: 'Nearly 600 people supported', ur: 'تقریباً ۶۰۰ افراد کی معاونت', ar: 'دعم نحو ٦٠٠ شخص' },
     { en: 'Doctors, scans and free medicines', ur: 'ڈاکٹر، سکین اور مفت ادویات', ar: 'أطباء وفحوصات وأدوية مجانية' },
   ] as L[],
-  // Car photos and video frames go here once supplied. Empty list shows labelled placeholders.
   images: [
-    { src: '/img/car/van-side.jpg', alt: { en: 'Our white van parked in the lane with its door open', ur: 'گلی میں کھڑی ہماری سفید گاڑی، دروازہ کھلا ہوا', ar: 'سيارتنا البيضاء في الزقاق وبابها مفتوح' } },
-    { src: '/img/car/van-loading.jpg', alt: { en: 'Patients sitting inside the van before the trip', ur: 'سفر سے پہلے گاڑی میں بیٹھے مریض', ar: 'مرضى جالسون في السيارة قبل الرحلة' } },
-    { src: '/img/car/van-rear.jpg', alt: { en: 'The van leaving for the hospital', ur: 'ہسپتال کے لیے روانہ ہوتی گاڑی', ar: 'السيارة تنطلق نحو المستشفى' } },
-    { src: '/img/car/van-plate.jpg', alt: { en: 'Women and children boarding in the morning', ur: 'صبح سوار ہوتی خواتین اور بچے', ar: 'نساء وأطفال يصعدون صباحًا' } },
+    { src: '/img/car/getting-in.jpg', alt: { en: 'Women and a child getting into the van', ur: 'خواتین اور ایک بچی گاڑی میں سوار ہوتے ہوئے', ar: 'نساء وطفلة يصعدون إلى السيارة' } },
+    { src: '/img/car/getting-out.jpg', alt: { en: 'Women stepping out of the van with their bags', ur: 'خواتین اپنے تھیلوں کے ساتھ گاڑی سے اترتے ہوئے', ar: 'نساء ينزلن من السيارة مع حقائبهن' } },
   ] as { src: string; alt: L }[],
-  clips: [1, 2, 3, 4],
-  driverRole: { en: 'Driver', ur: 'ڈرائیور', ar: 'السائق' },
-  driverNote: { en: 'Drives our patients to hospital and brings them home.', ur: 'ہمارے مریضوں کو ہسپتال لے جاتے اور گھر واپس پہنچاتے ہیں۔', ar: 'ينقل مرضانا إلى المستشفى ويعيدهم إلى بيوتهم.' },
-  // PLACEHOLDER: driver photo and name not yet supplied.
-  driver: { img: '', name: { en: 'Our driver', ur: 'ہمارے ڈرائیور', ar: 'سائقنا' } },
+  clip: 2,
+  mapTitle: { en: 'The daily route', ur: 'روزانہ کا راستہ', ar: 'المسار اليومي' },
+  mapNote: {
+    en: 'About 27 km by road, roughly half an hour each way. The route and the hospital pin are approximate.',
+    ur: 'سڑک کے راستے تقریباً ۲۷ کلومیٹر، ایک طرف کا سفر تقریباً آدھا گھنٹہ۔ راستہ اور ہسپتال کا نشان تخمینی ہے۔',
+    ar: 'نحو ٢٧ كم بالطريق، ونحو نصف ساعة في كل اتجاه. المسار وموقع المستشفى تقريبيان.',
+  },
 };
 
 /* ---------------- SUPPORT (sticky split) ---------------- */
@@ -515,7 +514,7 @@ export const location = {
   eyebrow: { en: 'Find us', ur: 'ہمیں تلاش کریں', ar: 'موقعنا' },
   title: { en: 'Rajajang', ur: 'راجہ جنگ', ar: 'راجاجانغ' },
   body: {
-    en: 'The langar, the stitching centre and the patient car all run from our town. Open the pin to find us.',
+    en: 'The langar, the stitching centre and the patient van all run from our town, Rajajang, south of Lahore. Zoom in to find us.',
     ur: 'لنگر، سلائی مرکز اور مریضوں کی گاڑی سب ہمارے اسی قصبے سے چلتے ہیں۔ ہمیں ڈھونڈنے کے لیے نقشہ کھولیں۔',
     ar: 'المطبخ ومركز الخياطة وسيارة المرضى كلها تنطلق من بلدتنا. افتح الموقع لتجدنا.',
   },
@@ -577,3 +576,15 @@ export const footer = {
 export const heroImages = ['/img/w/l2784.jpg', '/img/w/l2788.jpg', '/img/w/l2750.jpg', '/img/w/l2799.jpg'];
 export const bandImage = '/img/w/l2790.jpg';
 export const contactImage = '/img/w/l2782.jpg';
+
+/* ---------------- MAP PLACES (approximate pins) ---------------- */
+// Dar-e-Rehmat: from the shared Google Maps link. Hospital: Jubilee Town, Lahore (approximate pin, confirm).
+export const places = {
+  home: { lat: 31.22133, lng: 74.2580824, label: { en: 'Dar-e-Rehmat, Rajajang', ur: 'دارِ رحمت، راجہ جنگ', ar: 'دار الرحمة، راجاجانغ' } as L },
+  hospital: { lat: 31.4072, lng: 74.1899, label: { en: 'Indus Hospital, Jubilee Town', ur: 'انڈس ہسپتال، جوبلی ٹاؤن', ar: 'مستشفى إندوس، جوبيلي تاون' } as L },
+  lahore: { lat: 31.5204, lng: 74.3587, label: { en: 'Lahore', ur: 'لاہور', ar: 'لاهور' } as L },
+};
+export const mapUi = {
+  streets: { en: 'Map', ur: 'نقشہ', ar: 'خريطة' } as L,
+  satellite: { en: 'Aerial', ur: 'فضائی منظر', ar: 'منظر جوي' } as L,
+};

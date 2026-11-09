@@ -3,6 +3,7 @@ import { useEffect, useRef, useState, FormEvent } from 'react';
 import { useLang } from './Lang';
 import { a } from '@/lib/asset';
 import { CountNum } from './SectionsA';
+import RouteMap from './RouteMap';
 import { addTask, reduced } from '@/lib/motion';
 import { cues } from '@/data/teacher';
 import {
@@ -49,14 +50,14 @@ export function Proof() {
   }, []);
   return (
     <>
-      <section className="band" data-dark>
+      <div className="band-wrap"><section className="band" data-dark>
         <div className="band-bg"><img data-par="0.16" src={a(bandImage)} alt="" loading="lazy" style={{ height: '100%' }} /></div>
         <div className="wrap">
           <div className="eyebrow" data-rv="up">{t(proof.eyebrow)}</div>
           <h2 className="h-xl" data-rv="up" data-d="80" style={{ maxWidth: '16ch' }}>{t(proof.title)}</h2>
           <p className="lede" data-rv="up" data-d="180" style={{ marginTop: 22 }}>{t(proof.body)}</p>
         </div>
-      </section>
+      </section></div>
       <section className="sec" style={{ paddingBlock: 0 }}>
         <div className="wrap">
           <div className="kpis">
@@ -96,7 +97,6 @@ export function Proof() {
 /* ---------- Transport and medical (home) ---------- */
 export function Transport() {
   const { t } = useLang();
-  const slots: ({ src: string; alt: L } | null)[] = transport.images.length ? transport.images : [null, null, null];
   return (
     <section className="sec mist" id="transport">
       <div className="wrap">
@@ -106,42 +106,29 @@ export function Transport() {
           <div data-rv="up">
             <p className="lede">{t(transport.body)}</p>
             <ul className="facts dkfacts">{transport.facts.map((f, i) => <li key={i}>{t(f)}</li>)}</ul>
-            <div className="person driver">
-              <div className="pimg">
-                {transport.driver.img ? <img src={a(transport.driver.img)} alt={t(transport.driver.name)} loading="lazy" /> : <div className="ph-empty light"><span>{t(ui.comingSoon)}</span></div>}
-              </div>
-              <div className="pb">
-                <h3>{t(transport.driver.name)}</h3>
-                <span className="role">{t(transport.driverRole)}</span>
-                <p>{t(transport.driverNote)}</p>
-              </div>
-            </div>
           </div>
-          <div>
-            <div className="tgrid">
-              {slots.map((im, i) => (
-                <figure key={i} className={i === 0 && slots.length % 2 === 1 ? 'wide' : ''} data-rv="up" data-d={i * 100}>
-                  {im ? <img src={a(im.src)} alt={t(im.alt)} loading="lazy" /> : <div className="ph-empty light"><span>{t(ui.comingSoon)}</span></div>}
-                </figure>
+          <div data-rv="up" data-d="120">
+            <h3 className="h-md" style={{ marginBottom: 14 }}>{t(transport.mapTitle)}</h3>
+            <RouteMap key={'r' + t(transport.mapTitle)} variant="route" />
+            <p className="map-note">{t(transport.mapNote)}</p>
+            <div className="tmedia">
+              {transport.images.map((im, i) => (
+                <figure key={i}><img src={a(im.src)} alt={t(im.alt)} loading="lazy" /></figure>
               ))}
+              <div className="clip"><AutoClip src={`/video/car-${transport.clip}.mp4`} poster={`/video/car-poster-${transport.clip}.jpg`} /></div>
             </div>
           </div>
         </div>
-        {transport.clips.length > 0 && (
-          <div className="clips car-clips">
-            {transport.clips.map((n) => <div className="clip" key={n} data-rv="up"><AutoClip src={`/video/car-${n}.mp4`} poster={`/video/car-poster-${n}.jpg`} /></div>)}
-          </div>
-        )}
       </div>
     </section>
   );
 }
 
 /* ---------- People grid, reused by both pages ---------- */
-export function PeopleGrid({ data, id }: { data: { eyebrow: L; title: L; lede: L; people: { img: string; name: L; role: L; note: L }[] }; id?: string }) {
+export function PeopleGrid({ data, id, plain }: { data: { eyebrow: L; title: L; lede: L; people: { img: string; name: L; role: L; note: L }[] }; id?: string; plain?: boolean }) {
   const { t } = useLang();
   return (
-    <section className="sec mist" id={id}>
+    <section className={'sec' + (plain ? '' : ' mist')} id={id}>
       <div className="wrap">
         <div className="eyebrow" data-rv="up">{t(data.eyebrow)}</div>
         <h2 className="h-lg" data-rv="up" data-d="80" style={{ maxWidth: '18ch' }}>{t(data.title)}</h2>
@@ -331,24 +318,7 @@ export function Location() {
           <p className="lede" style={{ margin: '18px 0 28px' }}>{t(location.body)}</p>
           <a className="btn dk" href={MAPS_URL} target="_blank" rel="noopener noreferrer">{t(ui.openMap)}</a>
         </div>
-        <a className="map" href={MAPS_URL} target="_blank" rel="noopener noreferrer" aria-label={t(ui.openMap)} data-rv="scale" data-hot>
-          <svg viewBox="0 0 640 440" role="img" aria-label="Map pin">
-            <defs>
-              <pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="rgba(255,255,255,0.07)" /></pattern>
-            </defs>
-            <rect width="640" height="440" fill="url(#g)" />
-            <path d="M-20 300 C 140 250, 220 340, 330 290 S 520 230, 660 270" fill="none" stroke="rgba(227,167,47,0.35)" strokeWidth="10" strokeLinecap="round" />
-            <path d="M120 -10 C 160 120, 260 160, 290 460" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="6" strokeLinecap="round" />
-            <path d="M-10 120 C 180 150, 400 90, 660 160" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="4" strokeLinecap="round" />
-            <g transform="translate(330 232)">
-              <circle className="ring" r="18" fill="none" stroke="#E3A72F" strokeWidth="2" />
-              <circle className="ring b" r="18" fill="none" stroke="#E3A72F" strokeWidth="2" />
-              <circle r="9" fill="#E3A72F" />
-              <circle r="3.5" fill="#0a241c" />
-            </g>
-            <text x="330" y="292" textAnchor="middle" fill="#fff" fontSize="22" fontWeight="800" fontFamily="Manrope, sans-serif">{t(brand.name)}</text>
-          </svg>
-        </a>
+        <div data-rv="scale"><RouteMap key={'a' + t(location.title)} variant="area" /></div>
       </div>
     </section>
   );

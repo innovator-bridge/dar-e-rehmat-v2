@@ -463,3 +463,30 @@ html[dir='rtl'] .sph .stag { inset: 12px 12px auto auto; }
 @media (max-width: 900px) { .scard { grid-template-columns: 1fr; } .sph { aspect-ratio: 16 / 11; } }
 .car-clips { grid-template-columns: repeat(4, 1fr); margin-top: 40px; }
 @media (max-width: 760px) { .car-clips { grid-template-columns: repeat(2, 1fr); } }
+
+/* route map */
+.rmap { position: relative; border-radius: var(--r-lg); overflow: hidden; box-shadow: 0 30px 80px -30px rgba(10,36,28,0.55); background: var(--green-900); direction: ltr; }
+.rmap-box { height: 420px; width: 100%; }
+.rmap.area .rmap-box { height: min(520px, 62vw); min-height: 360px; }
+.rmap-bar { position: absolute; z-index: 500; inset: 12px 12px auto auto; display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.rmap .chip { background: rgba(10,36,28,0.82); }
+.rmap .chip[aria-pressed='true'] { background: var(--gold); color: var(--green-900); }
+.mk-wrap { overflow: visible !important; background: none !important; border: 0 !important; }
+.mk { position: absolute; left: -9px; top: -9px; width: 18px; height: 18px; border-radius: 50%; background: var(--gold); border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.45); }
+.mk i { position: absolute; inset: -12px; border-radius: 50%; border: 2px solid var(--gold); animation: ring 2.6s ease-out infinite; }
+.mk.hosp { background: #c8553d; }
+.mk.hosp i { border-color: #c8553d; }
+.mk.city { width: 10px; height: 10px; left: -5px; top: -5px; background: #fff; border: 2px solid var(--green-800); }
+.mk.city i { display: none; }
+.mk-label { position: absolute; left: 14px; top: -11px; white-space: nowrap; background: rgba(255,255,255,0.94); color: var(--ink); padding: 3px 9px; border-radius: 8px; font: 800 12px/1.4 var(--sans); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+.rmap .leaflet-control-attribution { font-size: 10px; }
+.map-note { margin-top: 12px; font-size: 0.86rem; color: var(--ink-2); }
+.tmedia { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 16px; }
+.tmedia figure, .tmedia .clip { margin: 0; border-radius: var(--r); overflow: hidden; aspect-ratio: 9 / 14; background: var(--mist-2); }
+.tmedia img, .tmedia video { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 560px) { .tmedia { grid-template-columns: 1fr 1fr; } .tmedia .clip { grid-column: 1 / -1; aspect-ratio: 16 / 10; } }
+
+/* clear separation between the dark pinned section and the next band */
+.band-wrap { background: var(--bg); padding: clamp(28px, 5vw, 72px) var(--pad); }
+.band-wrap .band { max-width: var(--max); margin-inline: auto; border-radius: var(--r-lg); min-height: 64vh; }
+.pin { border-bottom: 4px solid var(--gold); }
