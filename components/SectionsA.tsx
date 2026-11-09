@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useLang } from './Lang';
 import { a } from '@/lib/asset';
 import { addTask, countUp, reduced } from '@/lib/motion';
-import { hero, stats, heroImages, marquee, about, challenge, work, model, ui } from '@/data/site';
+import { hero, stats, heroImages, marquee, about, challenge, work, programmes, model, ui } from '@/data/site';
 
 /* ---------- Count-up stat (triggers once on first view) ---------- */
 export function CountNum({ target, suffix = '' }: { target: number; suffix?: string }) {
@@ -26,7 +26,7 @@ export function CountNum({ target, suffix = '' }: { target: number; suffix?: str
   return <><span ref={ref} />{suffix && <small>{suffix}</small>}</>;
 }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero: text on the left, complete (uncropped) photos on the right ---------- */
 export function Hero() {
   const { t } = useLang();
   const [i, setI] = useState(0);
@@ -39,31 +39,34 @@ export function Hero() {
   const words = t(hero.h1).split(' ');
   return (
     <section className="hero" id="top" data-dark>
-      <div className="hero-bg">
-        {heroImages.map((src, k) => (
-          <img key={src} src={a(src)} alt="" className={k === i ? 'on' : ''} loading={k === 0 ? 'eager' : 'lazy'} {...(k === 0 ? { fetchPriority: 'high' as const } : {})} />
-        ))}
-      </div>
-      <div className="hero-scrim" />
       <div className="grain" />
       <svg className="hero-arcs" viewBox="0 0 400 400" aria-hidden>
         {[0, 1, 2, 3, 4, 5, 6].map((k) => (
           <path key={k} style={{ ['--k' as string]: k }} d={`M ${400 - k * 6} 400 C ${360 - k * 40} ${300 - k * 24}, ${260 - k * 30} ${120 + k * 20}, ${60 + k * 10} ${10 + k * 28}`} />
         ))}
       </svg>
-      <div className="ticks" aria-hidden>{heroImages.map((_, k) => <i key={k} className={k === i ? 'on' : ''} />)}</div>
-      <div className="wrap hero-in">
-        <div className="pill fade"><i />{t(hero.pill)}</div>
-        <h1 className="h-xl" aria-label={t(hero.h1)}>
-          {words.map((w, k) => (
-            <span className="w" key={k} aria-hidden><span style={{ ['--i' as string]: k }}>{w}</span></span>
-          ))}
-        </h1>
-        <p className="hero-sub fade" style={{ transitionDelay: '0.9s' }}>{t(hero.sub)}</p>
-        <div className="hero-cta fade" style={{ transitionDelay: '1.1s' }}>
-          <a className="btn pri" href="#work">{t(hero.primary)}</a>
-          <a className="btn ghost" href="#support">{t(hero.secondary)}</a>
+      <div className="wrap hero-in hero-grid">
+        <div className="hero-copy">
+          <div className="pill fade"><i />{t(hero.pill)}</div>
+          <h1 className="h-xl" aria-label={t(hero.h1)}>
+            {words.map((w, k) => (
+              <span className="w" key={k} aria-hidden><span style={{ ['--i' as string]: k }}>{w}</span></span>
+            ))}
+          </h1>
+          <p className="hero-sub fade" style={{ transitionDelay: '0.9s' }}>{t(hero.sub)}</p>
+          <div className="hero-cta fade" style={{ transitionDelay: '1.1s' }}>
+            <a className="btn pri" href="#programmes">{t(hero.primary)}</a>
+            <a className="btn ghost" href="#help">{t(hero.secondary)}</a>
+          </div>
         </div>
+        <div className="hframe fade" style={{ transitionDelay: '0.7s' }}>
+          {heroImages.map((src, k) => (
+            <img key={src} src={a(src)} alt="" className={k === i ? 'on' : ''} loading={k === 0 ? 'eager' : 'lazy'} {...(k === 0 ? { fetchPriority: 'high' as const } : {})} />
+          ))}
+          <div className="ticks" aria-hidden>{heroImages.map((_, k) => <i key={k} className={k === i ? 'on' : ''} />)}</div>
+        </div>
+      </div>
+      <div className="wrap">
         <div className="hero-stats fade" style={{ transitionDelay: '1.35s' }}>
           {stats.map((s, k) => (
             <div key={k}>
@@ -73,7 +76,6 @@ export function Hero() {
           ))}
         </div>
       </div>
-      <div className="scroll-cue" aria-hidden>{t(ui.scroll)}<i /></div>
     </section>
   );
 }
@@ -91,7 +93,7 @@ export function Marquee() {
   );
 }
 
-/* ---------- Scroll-lit manifesto ---------- */
+/* ---------- About: scroll-lit manifesto ---------- */
 export function Manifesto() {
   const { t } = useLang();
   const ref = useRef<HTMLParagraphElement>(null);
@@ -120,7 +122,7 @@ export function Manifesto() {
   );
 }
 
-/* ---------- Challenge: sticky image / scrolling list ---------- */
+/* ---------- The need: sticky photo / scrolling list ---------- */
 export function Challenge() {
   const { t } = useLang();
   const [active, setActive] = useState(0);
@@ -134,11 +136,11 @@ export function Challenge() {
     return () => io.disconnect();
   }, []);
   return (
-    <section className="sec mist">
+    <section className="sec mist" id="need">
       <div className="wrap">
         <div className="eyebrow" data-rv="up">{t(challenge.eyebrow)}</div>
         <h2 className="h-lg" data-rv="up" data-d="80" style={{ maxWidth: '18ch' }}>{t(challenge.title)}</h2>
-        <div className="split" style={{ marginTop: 56 }}>
+        <div className="split" style={{ marginTop: 48 }}>
           <div className="split-l">
             <div className="stack" data-hot>
               {challenge.items.map((it, k) => (
@@ -160,67 +162,34 @@ export function Challenge() {
   );
 }
 
-/* ---------- Pillars: horizontally pinned rail ---------- */
-const Icon = ({ k }: { k: string }) => {
-  const p = { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.7, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
-  if (k === 'bowl') return <svg {...p}><path d="M3 11h18a8 8 0 0 1-8 8h-2a8 8 0 0 1-8-8z" /><path d="M8 7c0-1.5 1.5-1.5 1.5-3M12 7c0-1.5 1.5-1.5 1.5-3M16 7c0-1.5 1.5-1.5 1.5-3" /></svg>;
-  if (k === 'needle') return <svg {...p}><path d="M20 3 8 15" /><circle cx="19" cy="4" r="1.6" /><path d="M8 15c-3 1-4 3-5 6 3-1 5-2 6-5" /><path d="M4 21c1-6 6-6 8-4" strokeDasharray="2 2.4" /></svg>;
-  return <svg {...p}><path d="M3 16V11l2-5h12l3 5v5" /><circle cx="7" cy="17" r="2" /><circle cx="17" cy="17" r="2" /><path d="M3 11h17M12 6v5" /></svg>;
-};
-
-export function WorkRail() {
+/* ---------- Programmes: one short preview card each, full detail on its own page ---------- */
+export function Programmes() {
   const { t } = useLang();
-  const sec = useRef<HTMLElement>(null);
-  const track = useRef<HTMLDivElement>(null);
-  const bar = useRef<HTMLElement>(null);
-  useEffect(() => {
-    const s = sec.current!, tr = track.current!, b = bar.current as HTMLElement;
-    let extra = 0;
-    const size = () => {
-      if (window.innerWidth <= 900) { s.style.height = ''; tr.style.transform = ''; extra = 0; return; }
-      extra = Math.max(0, tr.scrollWidth - window.innerWidth);
-      s.style.height = window.innerHeight + extra + 'px';
-    };
-    size();
-    window.addEventListener('resize', size);
-    const stop = addTask(() => {
-      if (!extra) return;
-      const r = s.getBoundingClientRect();
-      const p = Math.max(0, Math.min(1, -r.top / (s.offsetHeight - window.innerHeight)));
-      tr.style.transform = `translate3d(${(-p * extra).toFixed(1)}px,0,0)`;
-      b.style.transform = `scaleX(${p})`;
-    });
-    const late = window.setTimeout(size, 600); // after images/fonts settle
-    return () => { window.removeEventListener('resize', size); stop(); window.clearTimeout(late); };
-  }, []);
   return (
-    <section className="pin" id="work" ref={sec} data-dark>
-      <div className="pin-stick">
-        <div className="wrap pin-head">
-          <div className="eyebrow" style={{ color: 'var(--gold)' }}>{t(work.eyebrow)}</div>
-          <h2 className="h-lg" style={{ maxWidth: '20ch' }}>{t(work.title)}</h2>
-        </div>
-        <div className="pin-track" ref={track}>
-          {work.pillars.map((p) => (
-            <article className="rcard" key={p.n}>
-              <div className="ph">{p.img ? <img src={a(p.img)} alt="" loading="lazy" /> : <div className="ph-empty"><Icon k={p.icon} /><span>{t(ui.comingSoon)}</span></div>}</div>
-              <div className="rbody">
-                <div className="rtop"><span className="rnum">{p.n}</span><span className="ricon"><Icon k={p.icon} /></span></div>
+    <section className="sec" id="programmes">
+      <div className="wrap">
+        <div className="eyebrow" data-rv="up">{t(programmes.eyebrow)}</div>
+        <h2 className="h-lg" data-rv="up" data-d="80" style={{ maxWidth: '18ch' }}>{t(programmes.title)}</h2>
+        <div className="pcards">
+          {work.pillars.map((p, i) => (
+            <article className="pcard" key={p.n} data-rv="up" data-d={i * 120}>
+              <a className="pcard-img" href={a(p.href)} aria-label={t(p.title)}><img src={a(p.img)} alt="" loading="lazy" /></a>
+              <div className="pcard-body">
+                <span className="rnum">{p.n}</span>
                 <h3>{t(p.title)}</h3>
                 <p>{t(p.body)}</p>
-                <ul className="facts">{p.facts.map((f, k) => <li key={k}>{t(f)}</li>)}</ul>
-                <a className="more" href={a(p.href)}>{t(ui.learnMore)} <span aria-hidden>→</span></a>
+                <ul className="facts dkfacts">{p.facts.slice(0, 2).map((f, k) => <li key={k}>{t(f)}</li>)}</ul>
+                <a className="btn dk sm" href={a(p.href)}>{t(ui.learnMore)} <span aria-hidden>→</span></a>
               </div>
             </article>
           ))}
         </div>
-        <div className="pin-bar"><i ref={bar as never} /></div>
       </div>
     </section>
   );
 }
 
-/* ---------- Sewing model: stacking cards ---------- */
+/* ---------- Stitching model: stacking step cards (Stitching Centre page) ---------- */
 export function Model() {
   const { t } = useLang();
   return (
@@ -239,8 +208,8 @@ export function Model() {
           ))}
         </div>
         <div className="assure">
-          {model.assurances.map((a, k) => (
-            <div key={k} data-rv="up" data-d={k * 120}><h4>{t(a.title)}</h4><p>{t(a.body)}</p></div>
+          {model.assurances.map((x, k) => (
+            <div key={k} data-rv="up" data-d={k * 120}><h4>{t(x.title)}</h4><p>{t(x.body)}</p></div>
           ))}
         </div>
         <div className="notice" data-rv="up">{t(model.notice)}</div>

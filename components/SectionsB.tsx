@@ -7,28 +7,30 @@ import RouteMap from './RouteMap';
 import { addTask, reduced } from '@/lib/motion';
 import { cues } from '@/data/teacher';
 import {
-  L, proof, bandImage, centre, langar, transport, support, location, contact, footer, nav, brand, ui,
-  MAPS_URL, CONTACT, contactImage,
+  L, proof, impactHead, centre, langar, transport, support, location, contact, footer, nav, brand, ui,
+  MAPS_URL, CONTACT, places,
 } from '@/data/site';
 
-/* ---------- Generic page banner for the inner pages ---------- */
+/* ---------- Generic page banner: heading on the left, the complete photo on the right ---------- */
 export function PageHero({ img, title, sub }: { img: string; title: L; sub: L }) {
   const { t } = useLang();
   return (
     <section className="phero" data-dark>
-      <div className="phero-bg"><img data-par="0.1" src={a(img)} alt="" /></div>
       <div className="grain" />
-      <div className="wrap phero-in">
-        <a className="back" href={a('/')}>← {t(ui.backHome)}</a>
-        <h1 className="h-xl" data-rv="up">{t(title)}</h1>
-        <p className="lede" data-rv="up" data-d="120" style={{ marginTop: 22 }}>{t(sub)}</p>
+      <div className="wrap phero-in phero-grid">
+        <div>
+          <a className="back" href={a('/')}>← {t(ui.backHome)}</a>
+          <h1 className="h-xl" data-rv="up">{t(title)}</h1>
+          <p className="lede" data-rv="up" data-d="120" style={{ marginTop: 22 }}>{t(sub)}</p>
+        </div>
+        <figure className="pframe" data-rv="scale"><img src={a(img)} alt="" /></figure>
       </div>
     </section>
   );
 }
 
-/* ---------- Proof: parallax band, KPIs, timeline (home) ---------- */
-export function Proof() {
+/* ---------- Impact: statement, numbers, timeline ---------- */
+export function Impact() {
   const { t } = useLang();
   const tl = useRef<HTMLDivElement>(null);
   const fill = useRef<HTMLDivElement>(null);
@@ -49,75 +51,81 @@ export function Proof() {
     return () => { io.disconnect(); stop(); };
   }, []);
   return (
-    <>
-      <div className="band-wrap"><section className="band" data-dark>
-        <div className="band-bg"><img data-par="0.16" src={a(bandImage)} alt="" loading="lazy" style={{ height: '100%' }} /></div>
-        <div className="wrap">
-          <div className="eyebrow" data-rv="up">{t(proof.eyebrow)}</div>
-          <h2 className="h-xl" data-rv="up" data-d="80" style={{ maxWidth: '16ch' }}>{t(proof.title)}</h2>
-          <p className="lede" data-rv="up" data-d="180" style={{ marginTop: 22 }}>{t(proof.body)}</p>
+    <section className="sec" id="impact">
+      <div className="wrap">
+        <div className="eyebrow" data-rv="up">{t(impactHead.eyebrow)}</div>
+        <h2 className="h-lg" data-rv="up" data-d="80" style={{ maxWidth: '20ch' }}>{t(impactHead.title)}</h2>
+        <p className="lede" data-rv="up" data-d="160" style={{ marginTop: 18 }}>{t(proof.body)}</p>
+        <div className="kpis" style={{ marginTop: 40 }}>
+          {proof.kpis.map((k, i) => (
+            <div className="kpi" key={i} data-rv="up" data-d={i * 120}>
+              <div className="num"><CountNum target={k.target} suffix={k.suffix} /></div>
+              <div className="ul" /><p>{t(k.label)}</p>
+            </div>
+          ))}
         </div>
-      </section></div>
-      <section className="sec" style={{ paddingBlock: 0 }}>
-        <div className="wrap">
-          <div className="kpis">
-            {proof.kpis.map((k, i) => (
-              <div className="kpi" key={i} data-rv="up" data-d={i * 120}>
-                <div className="num"><CountNum target={k.target} suffix={k.suffix} /></div>
-                <div className="ul" /><p>{t(k.label)}</p>
+        <h3 className="h-md" data-rv="up" style={{ margin: '64px 0 36px' }}>{t(proof.timelineTitle)}</h3>
+        <div className="split">
+          <div className="tl" ref={tl}>
+            <div className="tl-line" /><div className="tl-fill" ref={fill} />
+            {proof.timeline.map((x, i) => (
+              <div className="tl-item" key={i}>
+                <div className="tl-when">{t(x.when)}</div>
+                <h4>{t(x.title)}</h4><p>{t(x.body)}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
-      <section className="sec">
-        <div className="wrap">
-          <h2 className="h-lg" data-rv="up" style={{ marginBottom: 56, maxWidth: '16ch' }}>{t(proof.timelineTitle)}</h2>
-          <div className="split">
-            <div className="tl" ref={tl}>
-              <div className="tl-line" /><div className="tl-fill" ref={fill} />
-              {proof.timeline.map((x, i) => (
-                <div className="tl-item" key={i}>
-                  <div className="tl-when">{t(x.when)}</div>
-                  <h4>{t(x.title)}</h4><p>{t(x.body)}</p>
-                </div>
-              ))}
-            </div>
-            <div className="photos-s">
-              <img src={a('/img/w/l2794.jpg')} alt="" loading="lazy" data-rv="right" />
-              <img src={a('/img/w/l2803.jpg')} alt="" loading="lazy" data-rv="right" data-d="150" />
-            </div>
+          <div className="photos-s">
+            <img src={a('/img/w/l2794.jpg')} alt="" loading="lazy" data-rv="right" />
+            <img src={a('/img/w/l2803.jpg')} alt="" loading="lazy" data-rv="right" data-d="150" />
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
 
-/* ---------- Transport and medical (home) ---------- */
-export function Transport() {
+/* ---------- Transport and Medical Aid page sections ---------- */
+export function TransportDetails() {
   const { t } = useLang();
   return (
-    <section className="sec mist" id="transport">
+    <section className="sec">
       <div className="wrap">
         <div className="eyebrow" data-rv="up">{t(transport.eyebrow)}</div>
         <h2 className="h-lg" data-rv="up" data-d="80" style={{ maxWidth: '18ch' }}>{t(transport.title)}</h2>
-        <div className="split" style={{ marginTop: 48 }}>
-          <div data-rv="up">
-            <p className="lede">{t(transport.body)}</p>
-            <ul className="facts dkfacts">{transport.facts.map((f, i) => <li key={i}>{t(f)}</li>)}</ul>
-          </div>
-          <div data-rv="up" data-d="120">
-            <h3 className="h-md" style={{ marginBottom: 14 }}>{t(transport.mapTitle)}</h3>
-            <RouteMap key={'r' + t(transport.mapTitle)} variant="route" />
-            <p className="map-note">{t(transport.mapNote)}</p>
-            <div className="tmedia">
-              {transport.images.map((im, i) => (
-                <figure key={i}><img src={a(im.src)} alt={t(im.alt)} loading="lazy" /></figure>
-              ))}
-              <div className="clip"><AutoClip src={`/video/car-${transport.clip}.mp4`} poster={`/video/car-poster-${transport.clip}.jpg`} /></div>
-            </div>
-          </div>
+        <p className="lede" data-rv="up" data-d="160" style={{ marginTop: 20 }}>{t(transport.body)}</p>
+        <ul className="facts dkfacts four" style={{ marginTop: 34 }}>{transport.facts.map((f, i) => <li key={i} data-rv="up" data-d={i * 80}>{t(f)}</li>)}</ul>
+      </div>
+    </section>
+  );
+}
+
+export function TransportMap() {
+  const { t } = useLang();
+  return (
+    <section className="sec mist" id="route">
+      <div className="wrap">
+        <div className="eyebrow" data-rv="up">{t(transport.mapTitle)}</div>
+        <h2 className="h-lg" data-rv="up" data-d="80" style={{ maxWidth: '18ch' }}>{t(places.home.label)} → {t(places.hospital.label)}</h2>
+        <div style={{ marginTop: 36 }} data-rv="scale"><RouteMap key={'r' + t(transport.mapTitle)} variant="route" /></div>
+        <p className="map-note">{t(transport.mapNote)}</p>
+      </div>
+    </section>
+  );
+}
+
+export function TransportMedia() {
+  const { t } = useLang();
+  return (
+    <section className="sec" id="road">
+      <div className="wrap">
+        <div className="eyebrow" data-rv="up">{t(transport.mediaTitle)}</div>
+        <h2 className="h-lg" data-rv="up" data-d="80" style={{ maxWidth: '18ch' }}>{t(transport.title)}</h2>
+        <div className="tmedia">
+          {transport.images.map((im, i) => (
+            <figure key={i} data-rv="up" data-d={i * 100}><img src={a(im.src)} alt={t(im.alt)} loading="lazy" /></figure>
+          ))}
+          <div className="clip" data-rv="up" data-d="200"><AutoClip src={`/video/car-${transport.clip}.mp4`} poster={`/video/car-poster-${transport.clip}.jpg`} /></div>
         </div>
       </div>
     </section>
@@ -257,8 +265,19 @@ export function Teacher() {
             </div>
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
 
-        <h3 className="h-md" style={{ marginTop: 90 }} data-rv="up">{t(centre.clipsTitle)}</h3>
+/* ---------- Classroom clips (own section) ---------- */
+export function Clips() {
+  const { t } = useLang();
+  return (
+    <section className="sec mist" id="classroom">
+      <div className="wrap">
+        <div className="eyebrow" data-rv="up">{t(centre.eyebrow)}</div>
+        <h2 className="h-lg" data-rv="up" data-d="80" style={{ maxWidth: '18ch' }}>{t(centre.clipsTitle)}</h2>
         <div className="clips">
           {CLIPS.map((id) => <div className="clip" key={id} data-rv="up"><AutoClip id={id} /></div>)}
         </div>
@@ -271,7 +290,7 @@ export function Teacher() {
 export function Support() {
   const { t } = useLang();
   return (
-    <section className="sec dark" id="support" data-dark>
+    <section className="sec dark" id="help" data-dark>
       <div className="wrap split">
         <div className="split-l">
           <div className="eyebrow">{t(support.eyebrow)}</div>
@@ -310,7 +329,7 @@ export function PageCta() {
 export function Location() {
   const { t } = useLang();
   return (
-    <section className="sec mist">
+    <section className="sec mist" id="visit">
       <div className="wrap loc">
         <div data-rv="up">
           <div className="eyebrow">{t(location.eyebrow)}</div>
@@ -337,7 +356,6 @@ export function Contact() {
   const f = contact.form;
   return (
     <section className="contact sec" id="contact" data-dark>
-      <div className="contact-bg"><img data-par="0.12" src={a(contactImage)} alt="" loading="lazy" /></div>
       <div className="wrap cgrid">
         <div>
           <div className="eyebrow" data-rv="up">{t(contact.eyebrow)}</div>

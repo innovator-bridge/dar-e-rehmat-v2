@@ -27,10 +27,13 @@ export const brand: { name: L; short: L; tagline: L } = {
 };
 
 export const nav: { href: string; label: L }[] = [
-  { href: '/', label: { en: 'Home', ur: 'ہوم', ar: 'الرئيسية' } },
+  { href: '/#about', label: { en: 'About', ur: 'ہمارے بارے میں', ar: 'من نحن' } },
   { href: '/langar-khana/', label: { en: 'Langar Khana', ur: 'لنگر خانہ', ar: 'مطبخ الخير' } },
   { href: '/stitching-centre/', label: { en: 'Stitching Centre', ur: 'سلائی مرکز', ar: 'مركز الخياطة' } },
-  { href: '/#transport', label: { en: 'Transport and Medical', ur: 'ٹرانسپورٹ اور طبی امداد', ar: 'النقل والطبي' } },
+  { href: '/transport-medical-aid/', label: { en: 'Transport and Medical Aid', ur: 'ٹرانسپورٹ اور طبی امداد', ar: 'النقل والمساعدة الطبية' } },
+  { href: '/#impact', label: { en: 'Impact', ur: 'اثرات', ar: 'الأثر' } },
+  { href: '/#help', label: { en: 'Ways to Help', ur: 'مدد کے طریقے', ar: 'طرق المساعدة' } },
+  { href: '/#visit', label: { en: 'Visit Us', ur: 'ہمیں ملیں', ar: 'زورونا' } },
   { href: '/#contact', label: { en: 'Contact', ur: 'رابطہ', ar: 'تواصل' } },
 ];
 
@@ -212,7 +215,7 @@ export const work = {
       n: '03',
       icon: 'car',
       img: '/img/car/van-side.jpg',
-      href: '/#transport',
+      href: '/transport-medical-aid/',
       title: { en: 'Transport and Medical Aid', ur: 'ٹرانسپورٹ اور طبی امداد', ar: 'النقل والمساعدة الطبية' },
       body: {
         en: 'Every morning our car carries patients from Rajajang to a hospital nearby and brings them home.',
@@ -459,12 +462,20 @@ export const langar = {
     { src: '/img/w/l2740.jpg', alt: { en: 'A large pot of curry being stirred', ur: 'بڑی دیگ میں سالن چلایا جا رہا ہے', ar: 'قدر كبير يُحرَّك فيه المرق' } },
     { src: '/img/w/l2796.jpg', alt: { en: 'Men eating together', ur: 'مرد مل کر کھانا کھا رہے ہیں', ar: 'رجال يأكلون معًا' } },
     { src: '/img/w/l2734.jpg', alt: { en: 'A rich curry simmering under its lid', ur: 'ڈھکن کے نیچے پکتا گاڑھا سالن', ar: 'مرق دسم يغلي تحت غطائه' } },
-    { src: '/img/w/l2770.jpg', alt: { en: 'A visitor arriving for the meal', ur: 'کھانے کے لیے آنے والا ایک مہمان', ar: 'زائر يصل لتناول الوجبة' } },
+    { src: '/img/w/l2782.jpg', alt: { en: 'Men sharing a meal at a table', ur: 'میز پر مل کر کھانا کھاتے مرد', ar: 'رجال يتشاركون وجبة على مائدة' } },
   ] as { src: string; alt: L }[],
 };
 
 /* ---------------- TRANSPORT AND MEDICAL (home section) ---------------- */
 export const transport = {
+  pageTitle: { en: 'Transport and Medical Aid', ur: 'ٹرانسپورٹ اور طبی امداد', ar: 'النقل والمساعدة الطبية' },
+  pageSub: {
+    en: 'Every morning our van carries patients from Rajajang to hospital and brings them home.',
+    ur: 'ہر صبح ہماری گاڑی مریضوں کو راجہ جنگ سے ہسپتال لے جاتی ہے اور گھر واپس لاتی ہے۔',
+    ar: 'كل صباح تنقل سيارتنا المرضى من راجاجانغ إلى المستشفى وتعيدهم إلى بيوتهم.',
+  },
+  banner: '/img/car/van-side.jpg',
+  mediaTitle: { en: 'On the road', ur: 'سفر کے دوران', ar: 'على الطريق' },
   eyebrow: { en: 'Transport and medical aid', ur: 'ٹرانسپورٹ اور طبی امداد', ar: 'النقل والمساعدة الطبية' },
   title: { en: 'A ride to the hospital, every morning', ur: 'ہر صبح ہسپتال تک سواری', ar: 'رحلة إلى المستشفى كل صباح' },
   body: {
@@ -571,6 +582,15 @@ export const footer = {
     ur: 'اعداد و شمار تخمینی ہیں اور روزمرہ کام کو ظاہر کرتے ہیں۔',
     ar: 'الأرقام تقريبية وتصف العمل اليومي.',
   },
+};
+
+export const programmes = {
+  eyebrow: { en: 'Our programmes', ur: 'ہمارے پروگرام', ar: 'برامجنا' },
+  title: { en: 'Three programmes, one purpose', ur: 'تین پروگرام، ایک مقصد', ar: 'ثلاثة برامج، غاية واحدة' },
+};
+export const impactHead = {
+  eyebrow: { en: 'Impact', ur: 'اثرات', ar: 'الأثر' },
+  title: { en: 'Not one day off since 20 December 2025', ur: '۲۰ دسمبر ۲۰۲۵ سے ایک دن کی بھی چھٹی نہیں', ar: 'دون يوم عطلة واحد منذ ٢٠ ديسمبر ٢٠٢٥' },
 };
 
 export const heroImages = ['/img/w/l2784.jpg', '/img/w/l2788.jpg', '/img/w/l2750.jpg', '/img/w/l2799.jpg'];

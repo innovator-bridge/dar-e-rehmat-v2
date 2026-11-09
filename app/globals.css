@@ -490,3 +490,69 @@ html[dir='rtl'] .sph .stag { inset: 12px 12px auto auto; }
 .band-wrap { background: var(--bg); padding: clamp(28px, 5vw, 72px) var(--pad); }
 .band-wrap .band { max-width: var(--max); margin-inline: auto; border-radius: var(--r-lg); min-height: 64vh; }
 .pin { border-bottom: 4px solid var(--gold); }
+
+/* ===== strict image rule: every photo is shown whole, never cropped (object-fit: contain) ===== */
+.sec { padding-block: clamp(56px, 7vw, 104px); }
+main > section.sec + section.sec { border-top: 1px solid var(--line); }
+main > section.sec.dark { border-top: 1px solid rgba(255, 255, 255, 0.14); }
+
+/* hero: text left, complete photo right */
+.hero { min-height: 0; justify-content: flex-start; padding-bottom: 40px; }
+.hero-in { padding-top: calc(var(--nav-h) + 44px); padding-bottom: 8px; }
+.hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(24px, 5vw, 72px); align-items: center; }
+.hero h1 { max-width: 12ch; }
+.hframe { position: relative; justify-self: center; width: min(100%, 440px); aspect-ratio: 3 / 4; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2); border-radius: var(--r-lg); overflow: hidden; }
+.hframe img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transform: none; transition: opacity 1.2s var(--e-io); }
+.hframe img.on { opacity: 1; transform: none; }
+.hframe .ticks { inset: auto auto 12px 12px; top: auto; z-index: 2; }
+html[dir='rtl'] .hframe .ticks { inset: auto 12px 12px auto; }
+.hero-stats { margin-top: 36px; }
+@media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } .hframe { width: min(100%, 400px); } }
+
+/* inner page banner */
+.phero { min-height: 0; display: block; }
+.phero::after { display: none; }
+.phero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(24px, 5vw, 72px); align-items: center; padding-top: calc(var(--nav-h) + 44px); padding-bottom: 56px; }
+.pframe { margin: 0; justify-self: center; width: min(100%, 420px); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2); border-radius: var(--r-lg); overflow: hidden; }
+.pframe img { width: 100%; height: auto; max-height: 74vh; object-fit: contain; }
+@media (max-width: 860px) { .phero-grid { grid-template-columns: 1fr; } }
+
+/* the need */
+.stack { aspect-ratio: auto; height: min(72vh, 640px); background: #fff; }
+.stack img { object-fit: contain; transform: none; }
+@media (max-width: 960px) { .stack { height: min(70vh, 520px); } }
+
+/* programme preview cards on the home page */
+.pcards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 44px; }
+.pcard { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 20px 50px -34px rgba(10,36,28,0.4); }
+.pcard-img { display: block; background: var(--mist); height: 340px; }
+.pcard-img img { width: 100%; height: 100%; object-fit: contain; }
+.pcard-body { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.pcard-body h3 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.03em; }
+html[lang='ur'] .pcard-body h3, html[lang='ar'] .pcard-body h3 { letter-spacing: 0; }
+.pcard-body p { color: var(--ink-2); }
+.pcard-body .rnum { color: var(--gold-600); }
+.pcard-body .btn { margin-top: auto; align-self: flex-start; }
+.dkfacts.four { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+@media (max-width: 960px) { .pcards { grid-template-columns: 1fr; } }
+
+/* step photos, team portraits, timeline photos, video frames: whole, uncropped */
+.sph { aspect-ratio: auto; height: 340px; background: var(--mist); }
+.sph img { object-fit: contain; }
+.scard.final .sph { background: rgba(255,255,255,0.08); }
+.person .pimg { aspect-ratio: auto; background: #fff; }
+.person .pimg img { height: auto; object-fit: contain; }
+.photos-s img { aspect-ratio: auto; height: auto; object-fit: contain; }
+.vwrap video { object-fit: contain; }
+.clip video { object-fit: contain; background: #000; }
+.tmedia { grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 40px; }
+.tmedia figure, .tmedia .clip { aspect-ratio: auto; height: min(560px, 70vh); background: var(--mist); }
+.tmedia img, .tmedia video { object-fit: contain; }
+.tmedia .clip { background: #000; }
+@media (max-width: 760px) { .tmedia { grid-template-columns: 1fr; } .tmedia figure, .tmedia .clip { height: auto; max-height: 70vh; } .tmedia .clip { aspect-ratio: 9 / 16; } .tmedia .clip { grid-column: auto; } }
+
+/* nav: eight links need the compact layout earlier */
+.nav-links { gap: 18px; }
+.nav-links a { font-size: 0.84rem; }
+@media (max-width: 1360px) { .nav-links, .nav .btn { display: none; } .burger { display: block; } }
+.drawer a { font-size: 1.6rem; }
