@@ -117,14 +117,21 @@ export function Transport() {
               </div>
             </div>
           </div>
-          <div className="tgrid">
-            {slots.map((im, i) => (
-              <figure key={i} className={i === 0 ? 'wide' : ''} data-rv="up" data-d={i * 100}>
-                {im ? <img src={a(im.src)} alt={t(im.alt)} loading="lazy" /> : <div className="ph-empty light"><span>{t(ui.comingSoon)}</span></div>}
-              </figure>
-            ))}
+          <div>
+            <div className="tgrid">
+              {slots.map((im, i) => (
+                <figure key={i} className={i === 0 && slots.length % 2 === 1 ? 'wide' : ''} data-rv="up" data-d={i * 100}>
+                  {im ? <img src={a(im.src)} alt={t(im.alt)} loading="lazy" /> : <div className="ph-empty light"><span>{t(ui.comingSoon)}</span></div>}
+                </figure>
+              ))}
+            </div>
           </div>
         </div>
+        {transport.clips.length > 0 && (
+          <div className="clips car-clips">
+            {transport.clips.map((n) => <div className="clip" key={n} data-rv="up"><AutoClip src={`/video/car-${n}.mp4`} poster={`/video/car-poster-${n}.jpg`} /></div>)}
+          </div>
+        )}
       </div>
     </section>
   );
@@ -202,7 +209,7 @@ export function LangarIntro() {
 /* ---------- Teacher video (captions appear once a transcript is added) + classroom clips ---------- */
 const CLIPS = ['2823', '2828', '2836', '2847', '2853', '2893', '2902', '2920', '2926'];
 
-function AutoClip({ id }: { id: string }) {
+function AutoClip({ id, src, poster }: { id?: string; src?: string; poster?: string }) {
   const v = useRef<HTMLVideoElement>(null);
   useEffect(() => {
     const el = v.current!;
@@ -211,7 +218,7 @@ function AutoClip({ id }: { id: string }) {
     io.observe(el);
     return () => io.disconnect();
   }, []);
-  return <video ref={v} src={a(`/video/school-${id}.mp4`)} poster={a(`/video/poster-${id}.jpg`)} muted loop playsInline preload="none" />;
+  return <video ref={v} src={a(src ?? `/video/school-${id}.mp4`)} poster={a(poster ?? `/video/poster-${id}.jpg`)} muted loop playsInline preload="none" />;
 }
 
 export function Teacher() {

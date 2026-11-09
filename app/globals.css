@@ -461,3 +461,5 @@ html[dir='rtl'] .more span { display: inline-block; transform: scaleX(-1); }
 html[dir='rtl'] .sph .stag { inset: 12px 12px auto auto; }
 .scard.final .sph .stag { background: rgba(10,36,28,0.8); color: #fff; }
 @media (max-width: 900px) { .scard { grid-template-columns: 1fr; } .sph { aspect-ratio: 16 / 11; } }
+.car-clips { grid-template-columns: repeat(4, 1fr); margin-top: 40px; }
+@media (max-width: 760px) { .car-clips { grid-template-columns: repeat(2, 1fr); } }

@@ -479,7 +479,13 @@ export const transport = {
     { en: 'Doctors, scans and free medicines', ur: 'ڈاکٹر، سکین اور مفت ادویات', ar: 'أطباء وفحوصات وأدوية مجانية' },
   ] as L[],
   // Car photos and video frames go here once supplied. Empty list shows labelled placeholders.
-  images: [] as { src: string; alt: L }[],
+  images: [
+    { src: '/img/car/van-side.jpg', alt: { en: 'Our white van parked in the lane with its door open', ur: 'گلی میں کھڑی ہماری سفید گاڑی، دروازہ کھلا ہوا', ar: 'سيارتنا البيضاء في الزقاق وبابها مفتوح' } },
+    { src: '/img/car/van-loading.jpg', alt: { en: 'Patients sitting inside the van before the trip', ur: 'سفر سے پہلے گاڑی میں بیٹھے مریض', ar: 'مرضى جالسون في السيارة قبل الرحلة' } },
+    { src: '/img/car/van-rear.jpg', alt: { en: 'The van leaving for the hospital', ur: 'ہسپتال کے لیے روانہ ہوتی گاڑی', ar: 'السيارة تنطلق نحو المستشفى' } },
+    { src: '/img/car/van-plate.jpg', alt: { en: 'Women and children boarding in the morning', ur: 'صبح سوار ہوتی خواتین اور بچے', ar: 'نساء وأطفال يصعدون صباحًا' } },
+  ] as { src: string; alt: L }[],
+  clips: [1, 2, 3, 4],
   driverRole: { en: 'Driver', ur: 'ڈرائیور', ar: 'السائق' },
   driverNote: { en: 'Drives our patients to hospital and brings them home.', ur: 'ہمارے مریضوں کو ہسپتال لے جاتے اور گھر واپس پہنچاتے ہیں۔', ar: 'ينقل مرضانا إلى المستشفى ويعيدهم إلى بيوتهم.' },
   // PLACEHOLDER: driver photo and name not yet supplied.
