@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Shell from '@/components/Shell';
 import { Model } from '@/components/SectionsA';
+import { RoadmapTeaser } from '@/components/Roadmap';
 import { PageHero, PeopleGrid, PhotoWall, Teacher, Clips, PageCta } from '@/components/SectionsB';
 import { centre, teamCentre } from '@/data/site';
 
@@ -14,6 +15,7 @@ export default function Page() {
     <Shell>
       <PageHero img={centre.banner} title={centre.pageTitle} sub={centre.pageSub} />
       <Model />
+      <RoadmapTeaser />
       <PhotoWall eyebrow={centre.garmentsEyebrow} title={centre.garmentsTitle} items={centre.garments} id="garments" tone="mist" />
       <PeopleGrid data={teamCentre} id="team" plain />
       <Teacher />
