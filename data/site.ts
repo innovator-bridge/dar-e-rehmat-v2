@@ -91,7 +91,7 @@ export const hero = {
 // Numbers supplied by the family. target = count-up value.
 export const stats: { target: number; prefix?: string; suffix?: string; label: L }[] = [
   { target: 300, suffix: '', prefix: '', label: { en: 'People fed on a typical day', ur: 'روزانہ کھانا کھانے والے', ar: 'شخص يُطعَمون يوميًا' } },
-  { target: 70, prefix: '', suffix: '', label: { en: 'Women served every day', ur: 'روزانہ خواتین کو کھانا', ar: 'امرأة يُخدَمن يوميًا' } },
+  { target: 80, prefix: '', suffix: '', label: { en: 'Women served every day', ur: 'روزانہ خواتین کو کھانا', ar: 'امرأة يُخدَمن يوميًا' } },
   { target: 600, prefix: '', suffix: '+', label: { en: 'People given full healthcare support', ur: 'افراد کو مکمل طبی معاونت', ar: 'شخص حصلوا على رعاية صحية كاملة' } },
   { target: 30, prefix: '', suffix: '', label: { en: 'Girls learning to sew', ur: 'سلائی سیکھنے والی لڑکیاں', ar: 'فتاة يتعلمن الخياطة' } },
 ];
@@ -150,7 +150,7 @@ export const challenge = {
       },
     },
     {
-      img: '/img/w/l2754.jpg',
+      img: '/img/w/care-access.jpg',
       title: { en: 'Good care is out of reach', ur: 'اچھا علاج پہنچ سے باہر', ar: 'الرعاية الجيدة بعيدة المنال' },
       body: {
         en: 'Qualified doctors, scans and medicines are rarely within a family’s means.',
@@ -188,7 +188,7 @@ export const work = {
       },
       facts: [
         { en: '280 to 300 people served daily', ur: 'روزانہ ۲۸۰ سے ۳۰۰ افراد', ar: 'من ٢٨٠ إلى ٣٠٠ شخص يوميًا' },
-        { en: '60 to 70 women every day', ur: 'روزانہ ۶۰ سے ۷۰ خواتین', ar: 'من ٦٠ إلى ٧٠ امرأة يوميًا' },
+        { en: '60 to 80 women every day', ur: 'روزانہ ۶۰ سے ۸۰ خواتین', ar: 'من ٦٠ إلى ٨٠ امرأة يوميًا' },
         { en: 'About 40 bring their children to dine', ur: 'تقریباً ۴۰ اپنے بچوں کے ساتھ کھانا کھاتی ہیں', ar: 'نحو ٤٠ منهنّ يأتين بأطفالهن' },
         { en: 'Packed meals for children at home', ur: 'گھر پر بچوں کے لیے پیک کھانا', ar: 'وجبات معبّأة للأطفال في البيت' },
       ] as L[],
@@ -314,7 +314,7 @@ export const proof = {
   },
   kpis: [
     { target: 300, suffix: '', label: { en: 'People fed daily', ur: 'روزانہ کھانا کھانے والے', ar: 'يُطعَمون يوميًا' } },
-    { target: 70, suffix: '', label: { en: 'Women served daily', ur: 'روزانہ خواتین', ar: 'نساء يوميًا' } },
+    { target: 80, suffix: '', label: { en: 'Women served daily', ur: 'روزانہ خواتین', ar: 'نساء يوميًا' } },
     { target: 600, suffix: '+', label: { en: 'People with full healthcare support', ur: 'افراد کو مکمل طبی معاونت', ar: 'أشخاص حصلوا على رعاية صحية كاملة' } },
     { target: 30, suffix: '', label: { en: 'Girls learning to sew', ur: 'سلائی سیکھنے والی لڑکیاں', ar: 'فتيات يتعلمن الخياطة' } },
   ] as { target: number; suffix: string; label: L }[],
@@ -329,7 +329,7 @@ export const proof = {
     {
       when: { en: 'Soon after', ur: 'اس کے بعد', ar: 'بعد ذلك' },
       title: { en: 'Women and children join the table', ur: 'خواتین اور بچے دسترخوان پر', ar: 'النساء والأطفال على المائدة' },
-      body: { en: 'Daily numbers climb to 280 to 300, with 60 to 70 women, many with their children.', ur: 'روزانہ تعداد ۲۸۰ سے ۳۰۰ تک پہنچی، جن میں ۶۰ سے ۷۰ خواتین ہیں، بہت سی اپنے بچوں کے ساتھ۔', ar: 'ارتفع العدد اليومي إلى ما بين ٢٨٠ و٣٠٠، منهم ٦٠ إلى ٧٠ امرأة، كثيرات مع أطفالهن.' },
+      body: { en: 'Daily numbers climb to 280 to 300, with 60 to 80 women, many with their children.', ur: 'روزانہ تعداد ۲۸۰ سے ۳۰۰ تک پہنچی، جن میں ۶۰ سے ۸۰ خواتین ہیں، بہت سی اپنے بچوں کے ساتھ۔', ar: 'ارتفع العدد اليومي إلى ما بين ٢٨٠ و٣٠٠، منهم ٦٠ إلى ٨٠ امرأة، كثيرات مع أطفالهن.' },
     },
     {
       when: { en: 'Every morning', ur: 'ہر صبح', ar: 'كل صباح' },
@@ -446,8 +446,8 @@ export const langar = {
   },
   banner: '/img/w/l2768.jpg',
   intro: {
-    en: 'The kitchen opens every day at midday. Children, women and elders sit together on clean mats and eat. Around 40 of the 60 to 70 women who come each day bring their children to dine, and the rest take packed food home for the little ones.',
-    ur: 'لنگر ہر روز دوپہر کو کھلتا ہے۔ بچے، خواتین اور بزرگ صاف چٹائیوں پر ساتھ بیٹھ کر کھاتے ہیں۔ روز آنے والی ۶۰ سے ۷۰ خواتین میں سے تقریباً ۴۰ اپنے بچوں کو ساتھ لاتی ہیں اور باقی چھوٹوں کے لیے گھر پیک کھانا لے جاتی ہیں۔',
+    en: 'The kitchen opens every day at midday. Children, women and elders sit together on clean mats and eat. Around 40 of the 60 to 80 women who come each day bring their children to dine, and the rest take packed food home for the little ones.',
+    ur: 'لنگر ہر روز دوپہر کو کھلتا ہے۔ بچے، خواتین اور بزرگ صاف چٹائیوں پر ساتھ بیٹھ کر کھاتے ہیں۔ روز آنے والی ۶۰ سے ۸۰ خواتین میں سے تقریباً ۴۰ اپنے بچوں کو ساتھ لاتی ہیں اور باقی چھوٹوں کے لیے گھر پیک کھانا لے جاتی ہیں۔',
     ar: 'يفتح المطبخ أبوابه كل يوم عند الظهيرة. يجلس الأطفال والنساء وكبار السن معًا على حصائر نظيفة ويأكلون. نحو ٤٠ من النساء اللواتي يأتين كل يوم، وعددهن بين ٦٠ و٧٠، يُحضرن أطفالهن لتناول الطعام، والبقية يأخذن طعامًا معبّأً إلى الصغار في البيت.',
   },
   galleryEyebrow: { en: 'The kitchen and the hall', ur: 'باورچی خانہ اور ہال', ar: 'المطبخ والقاعة' },
