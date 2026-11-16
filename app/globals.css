@@ -606,3 +606,18 @@ html[dir='rtl'] .mk-price { text-align: right; }
 .pyr-row:nth-child(4) .pyr-shape { background: linear-gradient(135deg, #2a7f65, #1b6a52); }
 .pyr-row p { color: var(--ink-2); max-width: 44ch; }
 @media (max-width: 800px) { .pyr-row { grid-template-columns: 1fr; gap: 8px; } .pyr-shape { --w: calc(60% + var(--lv) * 13%); } }
+
+/* ===== fit to image: all photos are 9:16, so every frame uses that same ratio (no empty bars, no cropping) ===== */
+.hframe { aspect-ratio: 9 / 16; width: min(100%, 360px); }
+.hframe img { object-fit: cover; }
+.stack { height: auto; max-height: none; aspect-ratio: 9 / 16; width: min(100%, 405px); margin-inline: auto; }
+.stack img { object-fit: cover; }
+.pcard-img { height: auto; aspect-ratio: 9 / 16; }
+.pcard-img img { object-fit: cover; }
+.sph { height: auto; aspect-ratio: 9 / 16; }
+.sph img { object-fit: cover; }
+.tmedia figure, .tmedia .clip { height: auto; max-height: none; aspect-ratio: 9 / 16; }
+.tmedia img { object-fit: cover; }
+@media (max-width: 960px) { .stack { height: auto; width: min(100%, 360px); } }
+@media (max-width: 900px) { .sph { aspect-ratio: 9 / 16; max-width: 320px; margin-inline: auto; } }
+@media (max-width: 760px) { .tmedia figure, .tmedia .clip { height: auto; max-height: none; aspect-ratio: 9 / 16; } }
